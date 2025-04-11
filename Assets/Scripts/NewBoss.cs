@@ -65,7 +65,7 @@ public class NewBoss : Mob, IMapObject
 		new int[8] { 0, 0, 0, 0, 1, 1, 1, 1 }
 	};
 
-	public NewBoss(int id, short px, short py, int templateID, double hp, double maxHp, int s)
+	public NewBoss(int id, short px, short py, int templateID, long hp, long maxHp, int s)
 	{
 		mobId = id;
 		x = (xFirst = px + 20);
@@ -172,38 +172,38 @@ public class NewBoss : Mob, IMapObject
 		updateShadown();
 		switch (status)
 		{
-		case 2:
-			updateMobStandWait();
-			break;
-		case 3:
-			updateMobAttack();
-			break;
-		case 5:
-			timeStatus = 0;
-			updateMobWalk();
-			break;
-		case 6:
-			timeStatus = 0;
-			p1++;
-			y += p1;
-			if (y >= yFirst)
-			{
-				y = yFirst;
-				p1 = 0;
-				status = 5;
-			}
-			break;
-		case 7:
-			updateInjure();
-			base.update();
-			break;
-		case 0:
-		case 1:
-			updateDead();
-			break;
-		case 4:
-			updateMobFly();
-			break;
+			case 2:
+				updateMobStandWait();
+				break;
+			case 3:
+				updateMobAttack();
+				break;
+			case 5:
+				timeStatus = 0;
+				updateMobWalk();
+				break;
+			case 6:
+				timeStatus = 0;
+				p1++;
+				y += p1;
+				if (y >= yFirst)
+				{
+					y = yFirst;
+					p1 = 0;
+					status = 5;
+				}
+				break;
+			case 7:
+				updateInjure();
+				base.update();
+				break;
+			case 0:
+			case 1:
+				updateDead();
+				break;
+			case 4:
+				updateMobFly();
+				break;
 		}
 	}
 

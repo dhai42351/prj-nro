@@ -8,7 +8,7 @@ public class MobTemplate
 
 	public sbyte type;
 
-	public double hp;
+	public long hp;
 
 	public string name;
 

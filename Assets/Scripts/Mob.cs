@@ -57,9 +57,9 @@ public class Mob : IMapObject
 
 	public int holdEffID;
 
-	public double hp;
+	public long hp;
 
-	public double maxHp;
+	public long maxHp;
 
 	public int x;
 
@@ -251,7 +251,7 @@ public class Mob : IMapObject
 	{
 	}
 
-	public Mob(int mobId, bool isDisable, bool isDontMove, bool isFire, bool isIce, bool isWind, int templateId, int sys, double hp, sbyte level, double maxp, short pointx, short pointy, sbyte status, sbyte levelBoss)
+	public Mob(int mobId, bool isDisable, bool isDontMove, bool isFire, bool isIce, bool isWind, int templateId, int sys, long hp, sbyte level, long maxp, short pointx, short pointy, sbyte status, sbyte levelBoss)
 	{
 		this.isDisable = isDisable;
 		this.isDontMove = isDontMove;
@@ -667,152 +667,152 @@ public class Mob : IMapObject
 		}
 		switch (status)
 		{
-		case 1:
-			isDisable = false;
-			isDontMove = false;
-			isFire = false;
-			isIce = false;
-			isWind = false;
-			y += p1;
-			if (GameCanvas.gameTick % 2 == 0)
-			{
-				if (p2 > 1)
+			case 1:
+				isDisable = false;
+				isDontMove = false;
+				isFire = false;
+				isIce = false;
+				isWind = false;
+				y += p1;
+				if (GameCanvas.gameTick % 2 == 0)
 				{
-					p2--;
-				}
-				else if (p2 < -1)
-				{
-					p2++;
-				}
-			}
-			x += p2;
-			if (isTypeNewMod())
-			{
-				frame = hurt[GameCanvas.gameTick % hurt.Length];
-			}
-			else if (isNewModStand())
-			{
-				frame = attack1[GameCanvas.gameTick % attack1.Length];
-			}
-			else if (isNewMod())
-			{
-				frame = 11;
-			}
-			else if (isSpecial())
-			{
-				frame = 15;
-			}
-			else
-			{
-				frame = 11;
-			}
-			if (isDie)
-			{
-				isDie = false;
-				if (isMobMe)
-				{
-					for (int j = 0; j < GameScr.vMob.size(); j++)
+					if (p2 > 1)
 					{
-						if (((Mob)GameScr.vMob.elementAt(j)).mobId == mobId)
+						p2--;
+					}
+					else if (p2 < -1)
+					{
+						p2++;
+					}
+				}
+				x += p2;
+				if (isTypeNewMod())
+				{
+					frame = hurt[GameCanvas.gameTick % hurt.Length];
+				}
+				else if (isNewModStand())
+				{
+					frame = attack1[GameCanvas.gameTick % attack1.Length];
+				}
+				else if (isNewMod())
+				{
+					frame = 11;
+				}
+				else if (isSpecial())
+				{
+					frame = 15;
+				}
+				else
+				{
+					frame = 11;
+				}
+				if (isDie)
+				{
+					isDie = false;
+					if (isMobMe)
+					{
+						for (int j = 0; j < GameScr.vMob.size(); j++)
 						{
-							GameScr.vMob.removeElementAt(j);
+							if (((Mob)GameScr.vMob.elementAt(j)).mobId == mobId)
+							{
+								GameScr.vMob.removeElementAt(j);
+							}
+						}
+					}
+					p1 = 0;
+					p2 = 0;
+					x = (y = 0);
+					hp = getTemplate().hp;
+					status = 0;
+					timeStatus = 0;
+					break;
+				}
+				if ((TileMap.tileTypeAtPixel(x, y) & 2) == 2)
+				{
+					p1 = ((p1 <= 4) ? (-p1) : (-4));
+					if (p3 == 0)
+					{
+						p3 = 16;
+					}
+				}
+				else
+				{
+					p1++;
+				}
+				if (p3 > 0)
+				{
+					p3--;
+					if (p3 == 0)
+					{
+						isDie = true;
+					}
+				}
+				break;
+			case 2:
+				if (holdEffID == 0 && !isFreez && !blindEff && !sleepEff)
+				{
+					timeStatus = 0;
+					updateMobStandWait();
+				}
+				break;
+			case 4:
+				if (holdEffID == 0 && !blindEff && !sleepEff && !isFreez)
+				{
+					timeStatus = 0;
+					p1++;
+					if (p1 > 40 + mobId % 5)
+					{
+						y -= 2;
+						status = 5;
+						p1 = 0;
+					}
+				}
+				break;
+			case 3:
+				if (holdEffID == 0 && !blindEff && !sleepEff && !isFreez)
+				{
+					updateMobAttack();
+				}
+				break;
+			case 5:
+				if (holdEffID != 0 || blindEff || sleepEff)
+				{
+					break;
+				}
+				if (isFreez)
+				{
+					if (arrMobTemplate[templateId].type == 4)
+					{
+						ty++;
+						wt++;
+						fy += ((!wy) ? 1 : (-1));
+						if (wt == 10)
+						{
+							wt = 0;
+							wy = !wy;
 						}
 					}
 				}
-				p1 = 0;
-				p2 = 0;
-				x = (y = 0);
-				hp = getTemplate().hp;
-				status = 0;
-				timeStatus = 0;
+				else
+				{
+					timeStatus = 0;
+					updateMobWalk();
+				}
 				break;
-			}
-			if ((TileMap.tileTypeAtPixel(x, y) & 2) == 2)
-			{
-				p1 = ((p1 <= 4) ? (-p1) : (-4));
-				if (p3 == 0)
-				{
-					p3 = 16;
-				}
-			}
-			else
-			{
-				p1++;
-			}
-			if (p3 > 0)
-			{
-				p3--;
-				if (p3 == 0)
-				{
-					isDie = true;
-				}
-			}
-			break;
-		case 2:
-			if (holdEffID == 0 && !isFreez && !blindEff && !sleepEff)
-			{
-				timeStatus = 0;
-				updateMobStandWait();
-			}
-			break;
-		case 4:
-			if (holdEffID == 0 && !blindEff && !sleepEff && !isFreez)
-			{
+			case 6:
 				timeStatus = 0;
 				p1++;
-				if (p1 > 40 + mobId % 5)
+				y += p1;
+				if (y >= yFirst)
 				{
-					y -= 2;
-					status = 5;
+					y = yFirst;
 					p1 = 0;
+					status = 5;
 				}
-			}
-			break;
-		case 3:
-			if (holdEffID == 0 && !blindEff && !sleepEff && !isFreez)
-			{
-				updateMobAttack();
-			}
-			break;
-		case 5:
-			if (holdEffID != 0 || blindEff || sleepEff)
-			{
 				break;
-			}
-			if (isFreez)
-			{
-				if (arrMobTemplate[templateId].type == 4)
-				{
-					ty++;
-					wt++;
-					fy += ((!wy) ? 1 : (-1));
-					if (wt == 10)
-					{
-						wt = 0;
-						wy = !wy;
-					}
-				}
-			}
-			else
-			{
-				timeStatus = 0;
-				updateMobWalk();
-			}
-			break;
-		case 6:
-			timeStatus = 0;
-			p1++;
-			y += p1;
-			if (y >= yFirst)
-			{
-				y = yFirst;
-				p1 = 0;
-				status = 5;
-			}
-			break;
-		case 7:
-			updateInjure();
-			break;
+			case 7:
+				updateInjure();
+				break;
 		}
 	}
 
@@ -1007,24 +1007,24 @@ public class Mob : IMapObject
 		checkFrameTick(stand);
 		switch (arrMobTemplate[templateId].type)
 		{
-		case 0:
-		case 1:
-		case 2:
-		case 3:
-			p1++;
-			if (p1 > 10 + mobId % 10 && (cFocus == null || Res.abs(cFocus.cx - x) > 80) && (mobToAttack == null || Res.abs(mobToAttack.x - x) > 80))
-			{
-				status = 5;
-			}
-			break;
-		case 4:
-		case 5:
-			p1++;
-			if (p1 > mobId % 3 && (cFocus == null || Res.abs(cFocus.cx - x) > 80) && (mobToAttack == null || Res.abs(mobToAttack.x - x) > 80))
-			{
-				status = 5;
-			}
-			break;
+			case 0:
+			case 1:
+			case 2:
+			case 3:
+				p1++;
+				if (p1 > 10 + mobId % 10 && (cFocus == null || Res.abs(cFocus.cx - x) > 80) && (mobToAttack == null || Res.abs(mobToAttack.x - x) > 80))
+				{
+					status = 5;
+				}
+				break;
+			case 4:
+			case 5:
+				p1++;
+				if (p1 > mobId % 3 && (cFocus == null || Res.abs(cFocus.cx - x) > 80) && (mobToAttack == null || Res.abs(mobToAttack.x - x) > 80))
+				{
+					status = 5;
+				}
+				break;
 		}
 		if (cFocus != null && GameCanvas.gameTick % (10 + p1 % 20) == 0)
 		{
@@ -1173,145 +1173,145 @@ public class Mob : IMapObject
 			}
 			switch (arrMobTemplate[templateId].type)
 			{
-			case 0:
-				if (isNewModStand())
-				{
-					frame = stand[GameCanvas.gameTick % stand.Length];
-				}
-				else
-				{
-					frame = 0;
-				}
-				num = 2;
-				break;
-			case 1:
-			case 2:
-			case 3:
-			{
-				num = 3;
-				sbyte b = arrMobTemplate[templateId].speed;
-				if (b == 1)
-				{
-					if (GameCanvas.gameTick % 2 == 1)
+				case 0:
+					if (isNewModStand())
 					{
-						break;
-					}
-				}
-				else if (b > 2)
-				{
-					b += (sbyte)(mobId % 2);
-				}
-				else if (GameCanvas.gameTick % 2 == 1)
-				{
-					b--;
-				}
-				x += b * dir;
-				if (x > xFirst + arrMobTemplate[templateId].rangeMove)
-				{
-					dir = -1;
-				}
-				else if (x < xFirst - arrMobTemplate[templateId].rangeMove)
-				{
-					dir = 1;
-				}
-				if (Res.abs(x - Char.myCharz().cx) < 40 && Res.abs(x - xFirst) < arrMobTemplate[templateId].rangeMove)
-				{
-					dir = ((x <= Char.myCharz().cx) ? 1 : (-1));
-					if (Res.abs(x - Char.myCharz().cx) < 20)
-					{
-						x -= dir * 10;
-					}
-					status = 2;
-					forceWait = 20;
-				}
-				checkFrameTick((w <= 30) ? moveFast : move);
-				break;
-			}
-			case 4:
-			{
-				num = 4;
-				sbyte speed2 = arrMobTemplate[templateId].speed;
-				speed2 += (sbyte)(mobId % 2);
-				x += speed2 * dir;
-				if (GameCanvas.gameTick % 10 > 2)
-				{
-					y += speed2 * dirV;
-				}
-				speed2 += (sbyte)((GameCanvas.gameTick + mobId) % 2);
-				if (x > xFirst + arrMobTemplate[templateId].rangeMove)
-				{
-					dir = -1;
-					status = 2;
-					forceWait = GameCanvas.gameTick % 20 + 20;
-					p1 = 0;
-				}
-				else if (x < xFirst - arrMobTemplate[templateId].rangeMove)
-				{
-					dir = 1;
-					status = 2;
-					forceWait = GameCanvas.gameTick % 20 + 20;
-					p1 = 0;
-				}
-				if (y > yFirst + 24)
-				{
-					dirV = -1;
-				}
-				else if (y < yFirst - (20 + GameCanvas.gameTick % 10))
-				{
-					dirV = 1;
-				}
-				checkFrameTick(move);
-				break;
-			}
-			case 5:
-			{
-				num = 5;
-				sbyte speed = arrMobTemplate[templateId].speed;
-				speed += (sbyte)(mobId % 2);
-				x += speed * dir;
-				speed += (sbyte)((GameCanvas.gameTick + mobId) % 2);
-				if (GameCanvas.gameTick % 10 > 2)
-				{
-					y += speed * dirV;
-				}
-				if (x > xFirst + arrMobTemplate[templateId].rangeMove)
-				{
-					dir = -1;
-					status = 2;
-					forceWait = GameCanvas.gameTick % 20 + 20;
-					p1 = 0;
-				}
-				else if (x < xFirst - arrMobTemplate[templateId].rangeMove)
-				{
-					dir = 1;
-					status = 2;
-					forceWait = GameCanvas.gameTick % 20 + 20;
-					p1 = 0;
-				}
-				if (y > yFirst + 24)
-				{
-					dirV = -1;
-				}
-				else if (y < yFirst - (20 + GameCanvas.gameTick % 10))
-				{
-					dirV = 1;
-				}
-				if (TileMap.tileTypeAt(x, y, 2))
-				{
-					if (GameCanvas.gameTick % 10 > 5)
-					{
-						y = TileMap.tileYofPixel(y);
-						status = 4;
-						p1 = 0;
-						dirV = -1;
+						frame = stand[GameCanvas.gameTick % stand.Length];
 					}
 					else
 					{
-						dirV = -1;
+						frame = 0;
 					}
-				}
-				break;
-			}
+					num = 2;
+					break;
+				case 1:
+				case 2:
+				case 3:
+					{
+						num = 3;
+						sbyte b = arrMobTemplate[templateId].speed;
+						if (b == 1)
+						{
+							if (GameCanvas.gameTick % 2 == 1)
+							{
+								break;
+							}
+						}
+						else if (b > 2)
+						{
+							b += (sbyte)(mobId % 2);
+						}
+						else if (GameCanvas.gameTick % 2 == 1)
+						{
+							b--;
+						}
+						x += b * dir;
+						if (x > xFirst + arrMobTemplate[templateId].rangeMove)
+						{
+							dir = -1;
+						}
+						else if (x < xFirst - arrMobTemplate[templateId].rangeMove)
+						{
+							dir = 1;
+						}
+						if (Res.abs(x - Char.myCharz().cx) < 40 && Res.abs(x - xFirst) < arrMobTemplate[templateId].rangeMove)
+						{
+							dir = ((x <= Char.myCharz().cx) ? 1 : (-1));
+							if (Res.abs(x - Char.myCharz().cx) < 20)
+							{
+								x -= dir * 10;
+							}
+							status = 2;
+							forceWait = 20;
+						}
+						checkFrameTick((w <= 30) ? moveFast : move);
+						break;
+					}
+				case 4:
+					{
+						num = 4;
+						sbyte speed2 = arrMobTemplate[templateId].speed;
+						speed2 += (sbyte)(mobId % 2);
+						x += speed2 * dir;
+						if (GameCanvas.gameTick % 10 > 2)
+						{
+							y += speed2 * dirV;
+						}
+						speed2 += (sbyte)((GameCanvas.gameTick + mobId) % 2);
+						if (x > xFirst + arrMobTemplate[templateId].rangeMove)
+						{
+							dir = -1;
+							status = 2;
+							forceWait = GameCanvas.gameTick % 20 + 20;
+							p1 = 0;
+						}
+						else if (x < xFirst - arrMobTemplate[templateId].rangeMove)
+						{
+							dir = 1;
+							status = 2;
+							forceWait = GameCanvas.gameTick % 20 + 20;
+							p1 = 0;
+						}
+						if (y > yFirst + 24)
+						{
+							dirV = -1;
+						}
+						else if (y < yFirst - (20 + GameCanvas.gameTick % 10))
+						{
+							dirV = 1;
+						}
+						checkFrameTick(move);
+						break;
+					}
+				case 5:
+					{
+						num = 5;
+						sbyte speed = arrMobTemplate[templateId].speed;
+						speed += (sbyte)(mobId % 2);
+						x += speed * dir;
+						speed += (sbyte)((GameCanvas.gameTick + mobId) % 2);
+						if (GameCanvas.gameTick % 10 > 2)
+						{
+							y += speed * dirV;
+						}
+						if (x > xFirst + arrMobTemplate[templateId].rangeMove)
+						{
+							dir = -1;
+							status = 2;
+							forceWait = GameCanvas.gameTick % 20 + 20;
+							p1 = 0;
+						}
+						else if (x < xFirst - arrMobTemplate[templateId].rangeMove)
+						{
+							dir = 1;
+							status = 2;
+							forceWait = GameCanvas.gameTick % 20 + 20;
+							p1 = 0;
+						}
+						if (y > yFirst + 24)
+						{
+							dirV = -1;
+						}
+						else if (y < yFirst - (20 + GameCanvas.gameTick % 10))
+						{
+							dirV = 1;
+						}
+						if (TileMap.tileTypeAt(x, y, 2))
+						{
+							if (GameCanvas.gameTick % 10 > 5)
+							{
+								y = TileMap.tileYofPixel(y);
+								status = 4;
+								p1 = 0;
+								dirV = -1;
+							}
+							else
+							{
+								dirV = -1;
+							}
+						}
+						break;
+					}
 			}
 		}
 		catch (Exception)
@@ -1486,9 +1486,9 @@ public class Mob : IMapObject
 
 	public void startDie()
 	{
-		hp = 0.0;
+		hp = 0;
 		injureThenDie = true;
-		hp = 0.0;
+		hp = 0;
 		status = 1;
 		Res.outz("MOB DIEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEe");
 		p1 = -3;

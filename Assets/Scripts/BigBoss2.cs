@@ -96,7 +96,7 @@ public class BigBoss2 : Mob, IMapObject
 
 	public new int forceWait;
 
-	public BigBoss2(int id, short px, short py, int templateID, double hp, double maxHp, int s)
+	public BigBoss2(int id, short px, short py, int templateID, long hp, long maxHp, int s)
 	{
 		if (shadowBig == null)
 		{
@@ -206,38 +206,38 @@ public class BigBoss2 : Mob, IMapObject
 		updateShadown();
 		switch (status)
 		{
-		case 2:
-			updateMobStandWait();
-			break;
-		case 4:
-			timeStatus = 0;
-			updateMobFly();
-			break;
-		case 3:
-			updateMobAttack();
-			break;
-		case 5:
-			timeStatus = 0;
-			updateMobWalk();
-			break;
-		case 6:
-			timeStatus = 0;
-			p1++;
-			y += p1;
-			if (y >= yFirst)
-			{
-				y = yFirst;
-				p1 = 0;
-				status = 5;
-			}
-			break;
-		case 7:
-			updateInjure();
-			break;
-		case 0:
-		case 1:
-			updateDead();
-			break;
+			case 2:
+				updateMobStandWait();
+				break;
+			case 4:
+				timeStatus = 0;
+				updateMobFly();
+				break;
+			case 3:
+				updateMobAttack();
+				break;
+			case 5:
+				timeStatus = 0;
+				updateMobWalk();
+				break;
+			case 6:
+				timeStatus = 0;
+				p1++;
+				y += p1;
+				if (y >= yFirst)
+				{
+					y = yFirst;
+					p1 = 0;
+					status = 5;
+				}
+				break;
+			case 7:
+				updateInjure();
+				break;
+			case 0:
+			case 1:
+				updateDead();
+				break;
 		}
 	}
 

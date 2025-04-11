@@ -70,7 +70,7 @@ public class BachTuoc : Mob, IMapObject
 
 	public new int forceWait;
 
-	public BachTuoc(int id, short px, short py, int templateID, double hp, double maxHp, int s)
+	public BachTuoc(int id, short px, short py, int templateID, long hp, long maxHp, int s)
 	{
 		mobId = id;
 		xFirst = (x = px + 20);
@@ -177,36 +177,36 @@ public class BachTuoc : Mob, IMapObject
 		updateShadown();
 		switch (status)
 		{
-		case 2:
-			updateMobStandWait();
-			break;
-		case 3:
-			updateMobAttack();
-			break;
-		case 5:
-			timeStatus = 0;
-			updateMobWalk();
-			break;
-		case 6:
-			timeStatus = 0;
-			p1++;
-			y += p1;
-			if (y >= yFirst)
-			{
-				y = yFirst;
-				p1 = 0;
-				status = 5;
-			}
-			break;
-		case 7:
-			updateInjure();
-			break;
-		case 0:
-		case 1:
-			updateDead();
-			break;
-		case 4:
-			break;
+			case 2:
+				updateMobStandWait();
+				break;
+			case 3:
+				updateMobAttack();
+				break;
+			case 5:
+				timeStatus = 0;
+				updateMobWalk();
+				break;
+			case 6:
+				timeStatus = 0;
+				p1++;
+				y += p1;
+				if (y >= yFirst)
+				{
+					y = yFirst;
+					p1 = 0;
+					status = 5;
+				}
+				break;
+			case 7:
+				updateInjure();
+				break;
+			case 0:
+			case 1:
+				updateDead();
+				break;
+			case 4:
+				break;
 		}
 	}
 
