@@ -89,7 +89,7 @@ public class Mob : IMapObject
 
 	public int h;
 
-	public double hpInjure;
+	public long hpInjure;
 
 	public int charIndex;
 
@@ -818,7 +818,7 @@ public class Mob : IMapObject
 
 	public void setInjure()
 	{
-		if (hp > 0.0 && status != 3 && status != 7)
+		if (hp > 0 && status != 3 && status != 7)
 		{
 			timeStatus = 4;
 			status = 7;

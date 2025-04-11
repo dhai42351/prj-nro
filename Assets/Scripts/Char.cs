@@ -103,7 +103,7 @@ public class Char : IMapObject
 
 	public int ccurrentAttack;
 
-	public double cDamFull;
+	public long cDamFull;
 
 	public double cDefull;
 
@@ -2851,7 +2851,7 @@ public class Char : IMapObject
 						effPaints[i].eMob.injureBy = this;
 						if (me)
 						{
-							effPaints[i].eMob.hpInjure = myCharz().cDamFull / 2.0 - myCharz().cDamFull * (double)NinjaUtil.randomNumber(11) / 100.0;
+							effPaints[i].eMob.hpInjure = myCharz().cDamFull / 2 - myCharz().cDamFull * (long)NinjaUtil.randomNumber(11) / 100;
 						}
 						int num = effPaints[i].eMob.h >> 1;
 						if (effPaints[i].eMob.isBigBoss())
@@ -6811,7 +6811,7 @@ public class Char : IMapObject
 		}
 		if (isMob || (!isMob && cTypePk != 4 && damMP != -100))
 		{
-			if (HPShow <= 0.0)
+			if (HPShow <= 0)
 			{
 				if (me)
 				{
@@ -6827,7 +6827,7 @@ public class Char : IMapObject
 				GameScr.startFlyText("-" + HPShow, cx, cy - ch, 0, -2, isCrit ? mFont.FATAL : mFont.RED);
 			}
 		}
-		if (HPShow > 0.0)
+		if (HPShow > 0)
 		{
 			isInjure = 6;
 		}

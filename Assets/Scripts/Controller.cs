@@ -436,7 +436,7 @@ public class Controller : IMessageHandler
 							int num249 = msg.reader().readInt();
 							sbyte b75 = msg.reader().readByte();
 							int mobId3 = msg.reader().readInt();
-							double num250 = msg.reader().readIntToLongDQT();
+							long num250 = msg.reader().readLong();
 							long hp3 = msg.reader().readLong();
 							@char = null;
 							@char = ((num249 != Char.myCharz().charID) ? GameScr.findCharInMap(num249) : Char.myCharz());
@@ -464,7 +464,7 @@ public class Controller : IMessageHandler
 							@char.mobFocus = mob9;
 							mob9.hp = hp3;
 							mob9.updateHp_bar();
-							if (num250 == 0.0)
+							if (num250 == 0)
 							{
 								mob9.x = mob9.xFirst;
 								mob9.y = mob9.yFirst;
@@ -1710,7 +1710,7 @@ public class Controller : IMessageHandler
 					Char.myCharz().hpFrom1000TiemNang = msg.reader().readByte();
 					Char.myCharz().mpFrom1000TiemNang = msg.reader().readByte();
 					Char.myCharz().damFrom1000TiemNang = msg.reader().readByte();
-					Char.myCharz().cDamFull = msg.reader().readIntToLongDQT();
+					Char.myCharz().cDamFull = msg.reader().readLong();
 					Char.myCharz().cDefull = msg.reader().readIntToLongDQT();
 					Char.myCharz().cCriticalFull = msg.reader().readByte();
 					Char.myCharz().cTiemNang = msg.reader().readLong();
@@ -2849,8 +2849,8 @@ public class Controller : IMessageHandler
 							bool flag9 = false;
 							@char = Char.myCharz();
 							@char.cHP = msg.reader().readLong();
-							double dameHit = msg.reader().readIntToLongDQT();
-							if (dameHit != 0.0)
+							long dameHit = msg.reader().readLong();
+							if (dameHit != 0)
 							{
 								@char.doInjure();
 							}
@@ -2868,7 +2868,7 @@ public class Controller : IMessageHandler
 							}
 							if (Char.myCharz().cTypePk != 4)
 							{
-								if (dameHit == 0.0)
+								if (dameHit == 0)
 								{
 									GameScr.startFlyText(mResources.miss, @char.cx, @char.cy - @char.ch, 0, -3, mFont.MISS_ME);
 								}
@@ -2886,8 +2886,8 @@ public class Controller : IMessageHandler
 						}
 						@char.cHP = msg.reader().readLong();
 						bool flag10 = false;
-						double dameHit2 = msg.reader().readIntToLongDQT();
-						if (dameHit2 != 0.0)
+						long dameHit2 = msg.reader().readLong();
+						if (dameHit2 != 0)
 						{
 							@char.doInjure();
 						}
@@ -2904,7 +2904,7 @@ public class Controller : IMessageHandler
 						catch (Exception)
 						{
 						}
-						dameHit2 += (double)num97;
+						dameHit2 += (long)num97;
 						if (@char.cTypePk != 4)
 						{
 							if (dameHit2 == 0.0)
@@ -4158,10 +4158,10 @@ public class Controller : IMessageHandler
 						}
 						mob11.hp = msg.reader().readLong();
 						mob11.updateHp_bar();
-						double dame2 = msg.reader().readIntToLongDQT();
-						if (dame2 != 1.0)
+						long dame2 = msg.reader().readLong();
+						if (dame2 != 1)
 						{
-							if (dame2 > 1.0)
+							if (dame2 > 1)
 							{
 								mob11.setInjure();
 							}
@@ -4182,13 +4182,13 @@ public class Controller : IMessageHandler
 							{
 								GameScr.startFlyText("-" + dame2, mob11.x, mob11.getY() - mob11.getH(), 0, -2, mFont.FATAL);
 							}
-							else if (dame2 == 0.0)
+							else if (dame2 == 0)
 							{
 								mob11.x = mob11.xFirst;
 								mob11.y = mob11.yFirst;
 								GameScr.startFlyText(mResources.miss, mob11.x, mob11.getY() - mob11.getH(), 0, -2, mFont.MISS);
 							}
-							else if (dame2 > 1.0)
+							else if (dame2 > 1)
 							{
 								GameScr.startFlyText("-" + dame2, mob11.x, mob11.getY() - mob11.getH(), 0, -2, mFont.ORANGE);
 							}
@@ -4230,14 +4230,14 @@ public class Controller : IMessageHandler
 						mob16.startDie();
 						try
 						{
-							double dameHit4 = msg.reader().readIntToLongDQT();
+							long dameHit4 = msg.reader().readLong();
 							if (msg.reader().readBool())
 							{
-								GameScr.startFlyText("-" + dameHit4, mob16.x, mob16.y - mob16.h, 0, -2, mFont.FATAL);
+								GameScr.startFlyText("💥" + dameHit4, mob16.x, mob16.y - mob16.h, 0, -2, mFont.FATAL);
 							}
 							else
 							{
-								GameScr.startFlyText("-" + dameHit4, mob16.x, mob16.y - mob16.h, 0, -2, mFont.ORANGE);
+								GameScr.startFlyText("🗡️" + dameHit4, mob16.x, mob16.y - mob16.h, 0, -2, mFont.ORANGE);
 							}
 							sbyte b80 = msg.reader().readByte();
 							for (int num290 = 0; num290 < b80; num290++)
@@ -4860,6 +4860,7 @@ public class Controller : IMessageHandler
 			Char.myCharz().cy = (Char.myCharz().cySend = (Char.myCharz().cyFocus = msg.reader().readShort()));
 			Char.myCharz().xSd = Char.myCharz().cx;
 			Char.myCharz().ySd = Char.myCharz().cy;
+
 			if (Char.myCharz().cx >= 0 && Char.myCharz().cx <= 100)
 			{
 				Char.myCharz().cdir = 1;
@@ -5453,7 +5454,8 @@ public class Controller : IMessageHandler
 					try
 					{
 						Char.isLoadingMap = true;
-						Res.outz("REQUEST MAP TEMPLATE");
+						Debug.LogWarning("REQUEST MAP TEMPLATE");
+
 						GameCanvas.isLoading = true;
 						TileMap.maps = null;
 						TileMap.types = null;
@@ -5461,8 +5463,8 @@ public class Controller : IMessageHandler
 						GameCanvas.debug("SA99", 2);
 						TileMap.tmw = msg.reader().readByte();
 						TileMap.tmh = msg.reader().readByte();
+
 						TileMap.maps = new int[TileMap.tmw * TileMap.tmh];
-						Res.err("   M apsize= " + TileMap.tmw * TileMap.tmh);
 						for (int i = 0; i < TileMap.maps.Length; i++)
 						{
 							int num = msg.reader().readByte();

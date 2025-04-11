@@ -417,9 +417,9 @@ public class mFont
 			int length = st.Length;
 			int num = align switch
 			{
-				0 => x, 
-				1 => x - getWidth(st), 
-				_ => x - (getWidth(st) >> 1), 
+				0 => x,
+				1 => x - getWidth(st),
+				_ => x - (getWidth(st) >> 1),
 			};
 			for (int i = 0; i < length; i++)
 			{
@@ -494,9 +494,9 @@ public class mFont
 			int length = st.Length;
 			int num = align switch
 			{
-				0 => x, 
-				1 => x - getWidth(st), 
-				_ => x - (getWidth(st) >> 1), 
+				0 => x,
+				1 => x - getWidth(st),
+				_ => x - (getWidth(st) >> 1),
 			};
 			for (int i = 0; i < length; i++)
 			{
@@ -654,22 +654,22 @@ public class mFont
 		float num2 = 0f;
 		switch (align)
 		{
-		case 0:
-			num = x0;
-			num2 = y0;
-			gUIStyle.alignment = TextAnchor.UpperLeft;
-			break;
-		case 1:
-			num = x0 - GameCanvas.w;
-			num2 = y0;
-			gUIStyle.alignment = TextAnchor.UpperRight;
-			break;
-		case 2:
-		case 3:
-			num = x0 - GameCanvas.w / 2;
-			num2 = y0;
-			gUIStyle.alignment = TextAnchor.UpperCenter;
-			break;
+			case 0:
+				num = x0;
+				num2 = y0;
+				gUIStyle.alignment = TextAnchor.UpperLeft;
+				break;
+			case 1:
+				num = x0 - GameCanvas.w;
+				num2 = y0;
+				gUIStyle.alignment = TextAnchor.UpperRight;
+				break;
+			case 2:
+			case 3:
+				num = x0 - GameCanvas.w / 2;
+				num2 = y0;
+				gUIStyle.alignment = TextAnchor.UpperCenter;
+				break;
 		}
 		gUIStyle.normal.textColor = color1;
 		g.drawString(st, (int)num, (int)num2, gUIStyle);
