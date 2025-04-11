@@ -1,0 +1,9 @@
+
+.codegpt
+# Loại trừ các thư mục và file không cần thiết
+Temp/
+Library/
+.vscode/
+*.sln
+*.csproj
+*.htm
