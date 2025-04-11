@@ -264,7 +264,7 @@ namespace Assets.src.f
 								}
 								sbyte b22 = msg.reader().readByte();
 								Char[] array4 = new Char[b22];
-								int[] array5 = new int[b22];
+								long[] array5 = new long[b22];
 								for (int num28 = 0; num28 < b22; num28++)
 								{
 									int num29 = msg.reader().readInt();
@@ -277,7 +277,7 @@ namespace Assets.src.f
 									{
 										array4[num28] = Char.myCharz();
 									}
-									array5[num28] = msg.reader().readInt();
+									array5[num28] = msg.reader().readLong();
 								}
 								bigBoss.setAttack(array4, array5, b21);
 							}
@@ -297,7 +297,7 @@ namespace Assets.src.f
 								{
 									sbyte b23 = msg.reader().readByte();
 									Char[] array6 = new Char[b23];
-									int[] array7 = new int[b23];
+									long[] array7 = new long[b23];
 									for (int num30 = 0; num30 < b23; num30++)
 									{
 										int num31 = msg.reader().readInt();
@@ -310,7 +310,7 @@ namespace Assets.src.f
 										{
 											array6[num30] = Char.myCharz();
 										}
-										array7[num30] = msg.reader().readInt();
+										array7[num30] = msg.reader().readLong();
 									}
 									bachTuoc.setAttack(array6, array7, b21);
 								}
@@ -348,7 +348,7 @@ namespace Assets.src.f
 									sbyte b25 = msg.reader().readByte();
 									Res.outz("CHUONG nChar= " + b25);
 									Char[] array8 = new Char[b25];
-									int[] array9 = new int[b25];
+									long[] array9 = new long[b25];
 									for (int num32 = 0; num32 < b25; num32++)
 									{
 										int num33 = msg.reader().readInt();
@@ -362,7 +362,7 @@ namespace Assets.src.f
 										{
 											array8[num32] = Char.myCharz();
 										}
-										array9[num32] = msg.reader().readInt();
+										array9[num32] = msg.reader().readLong();
 									}
 									bigBoss2.setAttack(array8, array9, b24);
 								}
@@ -1255,7 +1255,7 @@ namespace Assets.src.f
 				{
 					sbyte b = msg.reader().readByte();
 					Char[] array = new Char[b];
-					int[] array2 = new int[b];
+					long[] array2 = new long[b];
 					for (int i = 0; i < b; i++)
 					{
 						int num = msg.reader().readInt();
@@ -1268,7 +1268,7 @@ namespace Assets.src.f
 						{
 							array[i] = Char.myCharz();
 						}
-						array2[i] = msg.reader().readInt();
+						array2[i] = msg.reader().readLong();
 					}
 					sbyte dir = msg.reader().readByte();
 					newBoss.setAttack(array, array2, (sbyte)(actionBoss - 10), dir);

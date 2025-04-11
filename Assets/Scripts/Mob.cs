@@ -131,9 +131,9 @@ public class Mob : IMapObject
 
 	public Char cFocus;
 
-	public double dame;
+	public long dame;
 
-	public double dameMp;
+	public long dameMp;
 
 	public int sys;
 
@@ -562,7 +562,7 @@ public class Mob : IMapObject
 					char2.cy = @char.cy - @char.ch;
 					if (@char.cgender == 0)
 					{
-						MonsterDart.addMonsterDart(x + dir * w, y, checkIsBoss(), -100.0, -100.0, char2, 25);
+						MonsterDart.addMonsterDart(x + dir * w, y, checkIsBoss(), -100, -100, char2, 25);
 					}
 				}
 			}
@@ -573,7 +573,7 @@ public class Mob : IMapObject
 				char3.cy = Char.myCharz().cy - Char.myCharz().ch;
 				if (Char.myCharz().cgender == 0)
 				{
-					MonsterDart.addMonsterDart(x + dir * w, y, checkIsBoss(), -100.0, -100.0, char3, 25);
+					MonsterDart.addMonsterDart(x + dir * w, y, checkIsBoss(), -100, -100, char3, 25);
 				}
 			}
 		}

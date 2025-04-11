@@ -186,7 +186,7 @@ namespace Assets.src.g
 						cdir = lastDir;
 						for (int i = 0; i < charAttack.Length; i++)
 						{
-							charAttack[i].doInjure(damageAttack[i], 0.0, isCrit: false, isMob: false);
+							charAttack[i].doInjure(damageAttack[i], 0, isCrit: false, isMob: false);
 						}
 					}
 				}
@@ -206,7 +206,7 @@ namespace Assets.src.g
 				{
 					cx = xTo;
 					cy = yTo;
-					charAttack[pIndex].doInjure(damageAttack[pIndex], 0.0, isCrit: false, isMob: false);
+					charAttack[pIndex].doInjure(damageAttack[pIndex], 0, isCrit: false, isMob: false);
 					pIndex++;
 					if (pIndex == charAttack.Length)
 					{

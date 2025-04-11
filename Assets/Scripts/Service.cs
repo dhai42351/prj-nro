@@ -863,11 +863,11 @@ public class Service
 				{
 					if (!Char.myCharz().isHaveMount)
 					{
-						Char.myCharz().cMP -= Char.myCharz().cMPGoc / 100.0 * (double)((Char.myCharz().isMonkey != 1) ? 1 : 2);
+						Char.myCharz().cMP -= Char.myCharz().cMPGoc / 100 * ((Char.myCharz().isMonkey != 1) ? 1 : 2);
 					}
-					if (Char.myCharz().cMP < 0.0)
+					if (Char.myCharz().cMP < 0)
 					{
-						Char.myCharz().cMP = 0.0;
+						Char.myCharz().cMP = 0;
 					}
 					GameScr.gI().isInjureMp = true;
 					GameScr.gI().twMp = 0;
@@ -1206,12 +1206,12 @@ public class Service
 			{
 				switch (type)
 				{
-				case 1:
-					message = new Message((sbyte)(-4));
-					break;
-				case 2:
-					message = new Message((sbyte)67);
-					break;
+					case 1:
+						message = new Message((sbyte)(-4));
+						break;
+					case 2:
+						message = new Message((sbyte)67);
+						break;
 				}
 				message.writer().writeByte(vMob.size());
 				for (int i = 0; i < vMob.size(); i++)
@@ -2019,24 +2019,24 @@ public class Service
 		}
 	}
 
-	  public void sendTop(string topName, sbyte selected)
-    {
-        Message message = null;
-        try
-        {
-            message = new Message((sbyte)(-96));
-            message.writer().writeUTF(topName);
-            message.writer().writeByte(selected);
-            session.sendMessage(message);
-        }
-        catch (Exception)
-        {
-        }
-        finally
-        {
-            message.cleanup();
-        }
-    }
+	public void sendTop(string topName, sbyte selected)
+	{
+		Message message = null;
+		try
+		{
+			message = new Message((sbyte)(-96));
+			message.writer().writeUTF(topName);
+			message.writer().writeByte(selected);
+			session.sendMessage(message);
+		}
+		catch (Exception)
+		{
+		}
+		finally
+		{
+			message.cleanup();
+		}
+	}
 
 	public void enemy(sbyte b, int charID)
 	{

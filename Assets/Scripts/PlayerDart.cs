@@ -78,7 +78,7 @@ public class PlayerDart
 			{
 				if (charBelong.charFocus != null && charBelong.charFocus.me)
 				{
-					charBelong.charFocus.doInjure(charBelong.charFocus.damHP, 0.0, charBelong.charFocus.isCrit, charBelong.charFocus.isMob);
+					charBelong.charFocus.doInjure(charBelong.charFocus.damHP, 0, charBelong.charFocus.isCrit, charBelong.charFocus.isMob);
 				}
 				endMe();
 				return;

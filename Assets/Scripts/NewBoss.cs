@@ -28,7 +28,7 @@ public class NewBoss : Mob, IMapObject
 
 	private Char[] charAttack;
 
-	private int[] dameHP;
+	private long[] dameHP;
 
 	private sbyte type;
 
@@ -246,7 +246,7 @@ public class NewBoss : Mob, IMapObject
 		flyUp = true;
 	}
 
-	public void setAttack(Char[] cAttack, int[] dame, sbyte type, sbyte dir)
+	public void setAttack(Char[] cAttack, long[] dame, sbyte type, sbyte dir)
 	{
 		charAttack = cAttack;
 		dameHP = dame;
@@ -271,7 +271,7 @@ public class NewBoss : Mob, IMapObject
 		{
 			for (int i = 0; i < charAttack.Length; i++)
 			{
-				charAttack[i].doInjure(dameHP[i], 0.0, isCrit: false, isMob: false);
+				charAttack[i].doInjure(dameHP[i], 0, isCrit: false, isMob: false);
 				ServerEffect.addServerEffect(frameArr[16][type - 1], charAttack[i].cx, charAttack[i].cy, 1);
 			}
 		}

@@ -341,8 +341,8 @@ public class Controller : IMessageHandler
 						{
 							int num246 = msg.reader().readInt();
 							int num247 = msg.reader().readInt();
-							double dameHit3 = msg.reader().readIntToLongDQT();
-							double cHPNew = msg.reader().readIntToLongDQT();
+							long dameHit3 = msg.reader().readLong();
+							long cHPNew = msg.reader().readLong();
 							if (num246 == Char.myCharz().charID)
 							{
 								@char = GameScr.findCharInMap(num247);
@@ -351,7 +351,7 @@ public class Controller : IMessageHandler
 									@char.cHPNew = cHPNew;
 									if (Char.myCharz().mobMe.isBusyAttackSomeOne)
 									{
-										@char.doInjure(dameHit3, 0.0, isCrit: false, isMob: true);
+										@char.doInjure(dameHit3, 0, isCrit: false, isMob: true);
 									}
 									else
 									{
@@ -370,7 +370,7 @@ public class Controller : IMessageHandler
 										Char.myCharz().cHPNew = cHPNew;
 										if (mob.isBusyAttackSomeOne)
 										{
-											Char.myCharz().doInjure(dameHit3, 0.0, isCrit: false, isMob: true);
+											Char.myCharz().doInjure(dameHit3, 0, isCrit: false, isMob: true);
 										}
 										else
 										{
@@ -386,7 +386,7 @@ public class Controller : IMessageHandler
 											@char.cHPNew = cHPNew;
 											if (mob.isBusyAttackSomeOne)
 											{
-												@char.doInjure(dameHit3, 0.0, isCrit: false, isMob: true);
+												@char.doInjure(dameHit3, 0, isCrit: false, isMob: true);
 											}
 											else
 											{
@@ -1699,13 +1699,13 @@ public class Controller : IMessageHandler
 						break;
 					}
 				case -42:
-					Char.myCharz().cHPGoc = msg.reader().readIntToLongDQT();
-					Char.myCharz().cMPGoc = msg.reader().readIntToLongDQT();
-					Char.myCharz().cDamGoc = msg.reader().readIntToLongDQT();
-					Char.myCharz().cHPFull = msg.reader().readIntToLongDQT();
-					Char.myCharz().cMPFull = msg.reader().readIntToLongDQT();
-					Char.myCharz().cHP = msg.reader().readIntToLongDQT();
-					Char.myCharz().cMP = msg.reader().readIntToLongDQT();
+					Char.myCharz().cHPGoc = msg.reader().readLong();
+					Char.myCharz().cMPGoc = msg.reader().readLong();
+					Char.myCharz().cDamGoc = msg.reader().readLong();
+					Char.myCharz().cHPFull = msg.reader().readLong();
+					Char.myCharz().cMPFull = msg.reader().readLong();
+					Char.myCharz().cHP = msg.reader().readLong();
+					Char.myCharz().cMP = msg.reader().readLong();
 					Char.myCharz().cspeed = msg.reader().readByte();
 					Char.myCharz().hpFrom1000TiemNang = msg.reader().readByte();
 					Char.myCharz().mpFrom1000TiemNang = msg.reader().readByte();
@@ -1834,11 +1834,11 @@ public class Controller : IMessageHandler
 									break;
 							}
 						}
-						Char.myPetz().cHP = msg.reader().readIntToLongDQT();
-						Char.myPetz().cHPFull = msg.reader().readIntToLongDQT();
-						Char.myPetz().cMP = msg.reader().readIntToLongDQT();
-						Char.myPetz().cMPFull = msg.reader().readIntToLongDQT();
-						Char.myPetz().cDamFull = msg.reader().readIntToLongDQT();
+						Char.myPetz().cHP = msg.reader().readLong();
+						Char.myPetz().cHPFull = msg.reader().readLong();
+						Char.myPetz().cMP = msg.reader().readLong();
+						Char.myPetz().cMPFull = msg.reader().readLong();
+						Char.myPetz().cDamFull = msg.reader().readLong();
 						Char.myPetz().cName = msg.reader().readUTF();
 						Char.myPetz().currStrLevel = msg.reader().readUTF();
 						Char.myPetz().cPower = msg.reader().readLong();
@@ -1922,11 +1922,11 @@ public class Controller : IMessageHandler
 									break;
 							}
 						}
-						Char.MyPet2z().cHP = msg.reader().readIntToLongDQT();
-						Char.MyPet2z().cHPFull = msg.reader().readIntToLongDQT();
-						Char.MyPet2z().cMP = msg.reader().readIntToLongDQT();
-						Char.MyPet2z().cMPFull = msg.reader().readIntToLongDQT();
-						Char.MyPet2z().cDamFull = msg.reader().readIntToLongDQT();
+						Char.MyPet2z().cHP = msg.reader().readLong();
+						Char.MyPet2z().cHPFull = msg.reader().readLong();
+						Char.MyPet2z().cMP = msg.reader().readLong();
+						Char.MyPet2z().cMPFull = msg.reader().readLong();
+						Char.MyPet2z().cDamFull = msg.reader().readLong();
 						Char.MyPet2z().cName = msg.reader().readUTF();
 						Char.MyPet2z().currStrLevel = msg.reader().readUTF();
 						Char.MyPet2z().cPower = msg.reader().readLong();
@@ -1967,9 +1967,9 @@ public class Controller : IMessageHandler
 						break;
 					}
 				case -109:
-					Char.myPetz().cHPGoc = msg.reader().readIntToLongDQT();
-					Char.myPetz().cMPGoc = msg.reader().readIntToLongDQT();
-					Char.myPetz().cDamGoc = msg.reader().readIntToLongDQT();
+					Char.myPetz().cHPGoc = msg.reader().readLong();
+					Char.myPetz().cMPGoc = msg.reader().readLong();
+					Char.myPetz().cDamGoc = msg.reader().readLong();
 					Char.myPetz().cDefGoc = msg.reader().DefShotToLong();
 					Char.myPetz().cCriticalGoc = msg.reader().readByteToInt();
 					break;
@@ -2848,7 +2848,7 @@ public class Controller : IMessageHandler
 						{
 							bool flag9 = false;
 							@char = Char.myCharz();
-							@char.cHP = msg.reader().readIntToLongDQT();
+							@char.cHP = msg.reader().readLong();
 							double dameHit = msg.reader().readIntToLongDQT();
 							if (dameHit != 0.0)
 							{
@@ -2884,7 +2884,7 @@ public class Controller : IMessageHandler
 						{
 							return;
 						}
-						@char.cHP = msg.reader().readIntToLongDQT();
+						@char.cHP = msg.reader().readLong();
 						bool flag10 = false;
 						double dameHit2 = msg.reader().readIntToLongDQT();
 						if (dameHit2 != 0.0)
@@ -3793,19 +3793,19 @@ public class Controller : IMessageHandler
 							{
 								bool flag = false;
 								@char = Char.myCharz();
-								double num5 = msg.reader().readIntToLongDQT();
+								long num5 = msg.reader().readLong();
 								@char.isDie = msg.reader().readBoolean();
 								if (@char.isDie)
 								{
 									Char.isLockKey = true;
 								}
-								double num6 = 0.0;
+								long num6 = 0;
 								flag = (@char.isCrit = msg.reader().readBoolean());
 								@char.isMob = false;
 								num5 = (@char.damHP = num5 + num6);
 								if (b5 == 0)
 								{
-									@char.doInjure(num5, 0.0, flag, isMob: false);
+									@char.doInjure(num5, 0, flag, isMob: false);
 								}
 							}
 							else
@@ -3816,15 +3816,15 @@ public class Controller : IMessageHandler
 									return;
 								}
 								bool flag2 = false;
-								double num7 = msg.reader().readIntToLongDQT();
+								long num7 = msg.reader().readLong();
 								@char.isDie = msg.reader().readBoolean();
-								double num8 = 0.0;
+								long num8 = 0;
 								flag2 = (@char.isCrit = msg.reader().readBoolean());
 								@char.isMob = false;
 								num7 = (@char.damHP = num7 + num8);
 								if (b5 == 0)
 								{
-									@char.doInjure(num7, 0.0, flag2, isMob: false);
+									@char.doInjure(num7, 0, flag2, isMob: false);
 								}
 							}
 						}
@@ -4295,15 +4295,15 @@ public class Controller : IMessageHandler
 						{
 							Char.myCharz().isDie = false;
 							Char.isLockKey = false;
-							double dame3 = msg.reader().readIntToLongDQT();
-							double num297;
+							long dame3 = msg.reader().readLong();
+							long num297;
 							try
 							{
-								num297 = msg.reader().readIntToLongDQT();
+								num297 = msg.reader().readLong();
 							}
 							catch (Exception)
 							{
-								num297 = 0.0;
+								num297 = 0;
 							}
 							if (mob18.isBusyAttackSomeOne)
 							{
@@ -4333,19 +4333,19 @@ public class Controller : IMessageHandler
 						@char = GameScr.findCharInMap(msg.reader().readInt());
 						if (@char != null)
 						{
-							double cHP = msg.reader().readIntToLongDQT();
+							long cHP = msg.reader().readLong();
 							mob14.dame = @char.cHP - cHP;
 							@char.cHPNew = cHP;
 							try
 							{
-								@char.cMP = msg.reader().readIntToLongDQT();
+								@char.cMP = msg.reader().readLong();
 							}
 							catch (Exception)
 							{
 							}
 							if (mob14.isBusyAttackSomeOne)
 							{
-								@char.doInjure(mob14.dame, 0.0, isCrit: false, isMob: true);
+								@char.doInjure(mob14.dame, 0, isCrit: false, isMob: true);
 							}
 							else
 							{
@@ -4403,7 +4403,7 @@ public class Controller : IMessageHandler
 							int charId2 = msg.reader().readInt();
 							int cx = msg.reader().readShort();
 							int cy = msg.reader().readShort();
-							double cHPShow = msg.reader().readIntToLongDQT();
+							long cHPShow = msg.reader().readLong();
 							Char char12 = GameScr.findCharInMap(charId2);
 							if (char12 != null)
 							{
@@ -5836,8 +5836,8 @@ public class Controller : IMessageHandler
 				case 4:
 					Char.myCharz().xu = msg.reader().readLong();
 					Char.myCharz().luong = msg.reader().readInt();
-					Char.myCharz().cHP = msg.reader().readIntToLongDQT();
-					Char.myCharz().cMP = msg.reader().readIntToLongDQT();
+					Char.myCharz().cHP = msg.reader().readLong();
+					Char.myCharz().cMP = msg.reader().readLong();
 					Char.myCharz().luongKhoa = msg.reader().readInt();
 					Char.myCharz().xuStr = mSystem.numberTostring(Char.myCharz().xu);
 					Char.myCharz().luongStr = mSystem.numberTostring(Char.myCharz().luong);
@@ -5845,15 +5845,15 @@ public class Controller : IMessageHandler
 					break;
 				case 5:
 					{
-						double cHP = Char.myCharz().cHP;
-						Char.myCharz().cHP = msg.reader().readIntToLongDQT();
+						long cHP = Char.myCharz().cHP;
+						Char.myCharz().cHP = msg.reader().readLong();
 						if (Char.myCharz().cHP > cHP && Char.myCharz().cTypePk != 4)
 						{
 							GameScr.startFlyText("+" + (Char.myCharz().cHP - cHP) + " " + mResources.HP, Char.myCharz().cx, Char.myCharz().cy - Char.myCharz().ch - 20, 0, -1, mFont.HP);
 							SoundMn.gI().HP_MPup();
 							if (Char.myCharz().petFollow != null && Char.myCharz().petFollow.smallID == 5003)
 							{
-								MonsterDart.addMonsterDart(Char.myCharz().petFollow.cmx + ((Char.myCharz().petFollow.dir != 1) ? (-10) : 10), Char.myCharz().petFollow.cmy + 10, isBoss: true, -1.0, -1.0, Char.myCharz(), 29);
+								MonsterDart.addMonsterDart(Char.myCharz().petFollow.cmx + ((Char.myCharz().petFollow.dir != 1) ? (-10) : 10), Char.myCharz().petFollow.cmy + 10, isBoss: true, -1, -1, Char.myCharz(), 29);
 							}
 						}
 						if (Char.myCharz().cHP < cHP)
@@ -5873,14 +5873,14 @@ public class Controller : IMessageHandler
 							break;
 						}
 						double cMP = Char.myCharz().cMP;
-						Char.myCharz().cMP = msg.reader().readIntToLongDQT();
+						Char.myCharz().cMP = msg.reader().readLong();
 						if (Char.myCharz().cMP > cMP)
 						{
 							GameScr.startFlyText("+" + (Char.myCharz().cMP - cMP) + " " + mResources.KI, Char.myCharz().cx, Char.myCharz().cy - Char.myCharz().ch - 23, 0, -2, mFont.MP);
 							SoundMn.gI().HP_MPup();
 							if (Char.myCharz().petFollow != null && Char.myCharz().petFollow.smallID == 5001)
 							{
-								MonsterDart.addMonsterDart(Char.myCharz().petFollow.cmx + ((Char.myCharz().petFollow.dir != 1) ? (-10) : 10), Char.myCharz().petFollow.cmy + 10, isBoss: true, -1.0, -1.0, Char.myCharz(), 29);
+								MonsterDart.addMonsterDart(Char.myCharz().petFollow.cmx + ((Char.myCharz().petFollow.dir != 1) ? (-10) : 10), Char.myCharz().petFollow.cmy + 10, isBoss: true, -1, -1, Char.myCharz(), 29);
 							}
 						}
 						if (Char.myCharz().cMP < cMP)
@@ -5944,8 +5944,8 @@ public class Controller : IMessageHandler
 						Char char8 = GameScr.findCharInMap(msg.reader().readInt());
 						if (char8 != null)
 						{
-							char8.cHP = msg.reader().readIntToLongDQT();
-							char8.cHPFull = msg.reader().readIntToLongDQT();
+							char8.cHP = msg.reader().readLong();
+							char8.cHPFull = msg.reader().readLong();
 						}
 						break;
 					}
@@ -5955,8 +5955,8 @@ public class Controller : IMessageHandler
 						Char char5 = GameScr.findCharInMap(msg.reader().readInt());
 						if (char5 != null)
 						{
-							char5.cHP = msg.reader().readIntToLongDQT();
-							char5.cHPFull = msg.reader().readIntToLongDQT();
+							char5.cHP = msg.reader().readLong();
+							char5.cHPFull = msg.reader().readLong();
 							char5.eff5BuffHp = msg.reader().readShort();
 							char5.eff5BuffMp = msg.reader().readShort();
 							char5.wp = msg.reader().readShort();
@@ -5973,8 +5973,8 @@ public class Controller : IMessageHandler
 						Char char2 = GameScr.findCharInMap(msg.reader().readInt());
 						if (char2 != null)
 						{
-							char2.cHP = msg.reader().readIntToLongDQT();
-							char2.cHPFull = msg.reader().readIntToLongDQT();
+							char2.cHP = msg.reader().readLong();
+							char2.cHPFull = msg.reader().readLong();
 							char2.eff5BuffHp = msg.reader().readShort();
 							char2.eff5BuffMp = msg.reader().readShort();
 							char2.body = msg.reader().readShort();
@@ -5991,8 +5991,8 @@ public class Controller : IMessageHandler
 						Char char11 = GameScr.findCharInMap(msg.reader().readInt());
 						if (char11 != null)
 						{
-							char11.cHP = msg.reader().readIntToLongDQT();
-							char11.cHPFull = msg.reader().readIntToLongDQT();
+							char11.cHP = msg.reader().readLong();
+							char11.cHPFull = msg.reader().readLong();
 							char11.eff5BuffHp = msg.reader().readShort();
 							char11.eff5BuffMp = msg.reader().readShort();
 							char11.leg = msg.reader().readShort();
@@ -6010,8 +6010,8 @@ public class Controller : IMessageHandler
 						Char @char = ((num2 != Char.myCharz().charID) ? GameScr.findCharInMap(num2) : Char.myCharz());
 						if (@char != null)
 						{
-							@char.cHP = msg.reader().readIntToLongDQT();
-							@char.cHPFull = msg.reader().readIntToLongDQT();
+							@char.cHP = msg.reader().readLong();
+							@char.cHPFull = msg.reader().readLong();
 							@char.eff5BuffHp = msg.reader().readShort();
 							@char.eff5BuffMp = msg.reader().readShort();
 						}
@@ -6022,7 +6022,7 @@ public class Controller : IMessageHandler
 						Char char4 = GameScr.findCharInMap(msg.reader().readInt());
 						if (char4 != null)
 						{
-							char4.cHP = msg.reader().readIntToLongDQT();
+							char4.cHP = msg.reader().readLong();
 							sbyte num3 = msg.reader().readByte();
 							if (num3 == 1)
 							{
@@ -6035,7 +6035,7 @@ public class Controller : IMessageHandler
 							}
 							try
 							{
-								char4.cHPFull = msg.reader().readIntToLongDQT();
+								char4.cHPFull = msg.reader().readLong();
 								break;
 							}
 							catch (Exception)
@@ -6050,8 +6050,8 @@ public class Controller : IMessageHandler
 						Char char3 = GameScr.findCharInMap(msg.reader().readInt());
 						if (char3 != null)
 						{
-							char3.cHP = msg.reader().readIntToLongDQT();
-							char3.cHPFull = msg.reader().readIntToLongDQT();
+							char3.cHP = msg.reader().readLong();
+							char3.cHPFull = msg.reader().readLong();
 							char3.cx = msg.reader().readShort();
 							char3.cy = msg.reader().readShort();
 							char3.statusMe = 1;
@@ -6197,13 +6197,13 @@ public class Controller : IMessageHandler
 			c.cgender = msg.reader().readByte();
 			c.head = msg.reader().readShort();
 			c.cName = msg.reader().readUTF();
-			c.cHP = msg.reader().readIntToLongDQT();
+			c.cHP = msg.reader().readLong();
 			c.dHP = c.cHP;
 			if (c.cHP == 0)
 			{
 				c.statusMe = 14;
 			}
-			c.cHPFull = msg.reader().readIntToLongDQT();
+			c.cHPFull = msg.reader().readLong();
 			if (c.cy >= TileMap.pxh - 100)
 			{
 				c.isFlyUp = true;

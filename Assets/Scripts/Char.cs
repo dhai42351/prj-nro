@@ -111,15 +111,15 @@ public class Char : IMapObject
 
 	public int clevel;
 
-	public double cMP;
+	public long cMP;
 
-	public double cHP;
+	public long cHP;
 
-	public double cHPNew;
+	public long cHPNew;
 
 	public int cMaxEXP;
 
-	public double cHPShow;
+	public long cHPShow;
 
 	public int xReload;
 
@@ -133,9 +133,9 @@ public class Char : IMapObject
 
 	public int eff5BuffMp;
 
-	public double cHPFull;
+	public long cHPFull;
 
-	public double cMPFull;
+	public long cMPFull;
 
 	public int cdameDown;
 
@@ -147,9 +147,9 @@ public class Char : IMapObject
 
 	public long cNangdong;
 
-	public double damHP;
+	public long damHP;
 
-	public int damMP;
+	public long damMP;
 
 	public bool isMob;
 
@@ -1014,11 +1014,11 @@ public class Char : IMapObject
 
 	public bool currentFireByShortcut;
 
-	public double cDamGoc;
+	public long cDamGoc;
 
-	public double cHPGoc;
+	public long cHPGoc;
 
-	public double cMPGoc;
+	public long cMPGoc;
 
 	public long cDefGoc;
 
@@ -2230,10 +2230,10 @@ public class Char : IMapObject
 						}
 						else if (effectChar.template.type == 13 && GameCanvas.isEff1)
 						{
-							cHP -= cHPFull * 3.0 / 100.0;
-							if (cHP < 1.0)
+							cHP -= cHPFull * 3 / 100;
+							if (cHP < 1)
 							{
-								cHP = 1.0;
+								cHP = 1;
 							}
 						}
 					}
@@ -2626,64 +2626,43 @@ public class Char : IMapObject
 				}
 				switch (statusMe)
 				{
-				case 1:
-					updateCharStand();
-					break;
-				case 2:
-					updateCharRun();
-					break;
-				case 3:
-					updateCharJump();
-					break;
-				case 4:
-					updateCharFall();
-					break;
-				case 5:
-					updateCharDeadFly();
-					break;
-				case 16:
-					updateResetPoint();
-					break;
-				case 9:
-					updateCharAutoJump();
-					break;
-				case 10:
-					updateCharFly();
-					break;
-				case 12:
-					updateSkillStand();
-					break;
-				case 13:
-					updateSkillFall();
-					break;
-				case 14:
-					cp1++;
-					if (cp1 > 30)
-					{
-						cp1 = 0;
-					}
-					if (cp1 % 15 < 5)
-					{
-						cf = 0;
-					}
-					else
-					{
-						cf = 1;
-					}
-					break;
-				case 6:
-					if (isInjure <= 0)
-					{
-						cf = 0;
-					}
-					else if (statusBeforeNothing == 10)
-					{
-						cx += cvx;
-					}
-					else if (cf <= 1)
-					{
+					case 1:
+						updateCharStand();
+						break;
+					case 2:
+						updateCharRun();
+						break;
+					case 3:
+						updateCharJump();
+						break;
+					case 4:
+						updateCharFall();
+						break;
+					case 5:
+						updateCharDeadFly();
+						break;
+					case 16:
+						updateResetPoint();
+						break;
+					case 9:
+						updateCharAutoJump();
+						break;
+					case 10:
+						updateCharFly();
+						break;
+					case 12:
+						updateSkillStand();
+						break;
+					case 13:
+						updateSkillFall();
+						break;
+					case 14:
 						cp1++;
-						if (cp1 > 6)
+						if (cp1 > 30)
+						{
+							cp1 = 0;
+						}
+						if (cp1 % 15 < 5)
 						{
 							cf = 0;
 						}
@@ -2691,40 +2670,61 @@ public class Char : IMapObject
 						{
 							cf = 1;
 						}
-						if (cp1 > 10)
-						{
-							cp1 = 0;
-						}
-					}
-					if (cf != 7 && cf != 12 && (TileMap.tileTypeAtPixel(cx, cy + 1) & 2) != 2)
-					{
-						cvx = 0;
-						cvy = 0;
-						statusMe = 4;
-						cf = 7;
-					}
-					if (me)
-					{
 						break;
-					}
-					cp3++;
-					if (cp3 > 10)
-					{
-						if ((TileMap.tileTypeAtPixel(cx, cy + 1) & 2) != 2)
-						{
-							cy += 5;
-						}
-						else
+					case 6:
+						if (isInjure <= 0)
 						{
 							cf = 0;
 						}
-					}
-					if (cp3 > 50)
-					{
-						cp3 = 0;
-						currentMovePoint = null;
-					}
-					break;
+						else if (statusBeforeNothing == 10)
+						{
+							cx += cvx;
+						}
+						else if (cf <= 1)
+						{
+							cp1++;
+							if (cp1 > 6)
+							{
+								cf = 0;
+							}
+							else
+							{
+								cf = 1;
+							}
+							if (cp1 > 10)
+							{
+								cp1 = 0;
+							}
+						}
+						if (cf != 7 && cf != 12 && (TileMap.tileTypeAtPixel(cx, cy + 1) & 2) != 2)
+						{
+							cvx = 0;
+							cvy = 0;
+							statusMe = 4;
+							cf = 7;
+						}
+						if (me)
+						{
+							break;
+						}
+						cp3++;
+						if (cp3 > 10)
+						{
+							if ((TileMap.tileTypeAtPixel(cx, cy + 1) & 2) != 2)
+							{
+								cy += 5;
+							}
+							else
+							{
+								cf = 0;
+							}
+						}
+						if (cp3 > 50)
+						{
+							cp3 = 0;
+							currentMovePoint = null;
+						}
+						break;
 				}
 				if (isInjure > 0)
 				{
@@ -2784,8 +2784,8 @@ public class Char : IMapObject
 						if (num7 - last >= 1000)
 						{
 							last = num7;
-							cHP += cHPFull * (double)myskill.damage / 100.0;
-							cMP += cMPFull * (double)myskill.damage / 100.0;
+							cHP += cHPFull * (long)myskill.damage / 100;
+							cMP += cMPFull * (long)myskill.damage / 100;
 							if (cHP < cHPFull)
 							{
 								GameScr.startFlyText("+" + cHPFull * (double)myskill.damage / 100.0 + " " + mResources.HP, cx, cy - ch - 20, 0, -1, mFont.HP);
@@ -4581,23 +4581,23 @@ public class Char : IMapObject
 		idMount = -1;
 		switch (num)
 		{
-		case 349:
-		case 350:
-		case 351:
-			isMountVip = true;
-			break;
-		case 396:
-			isEventMount = true;
-			break;
-		case 532:
-			isSpeacialMount = true;
-			break;
-		default:
-			if (num >= ID_NEW_MOUNT)
-			{
-				idMount = num;
-			}
-			break;
+			case 349:
+			case 350:
+			case 351:
+				isMountVip = true;
+				break;
+			case 396:
+				isEventMount = true;
+				break;
+			case 532:
+				isSpeacialMount = true;
+				break;
+			default:
+				if (num >= ID_NEW_MOUNT)
+				{
+					idMount = num;
+				}
+				break;
 		}
 		return result;
 	}
@@ -4751,7 +4751,7 @@ public class Char : IMapObject
 			myskill.lastTimeUseThisSkill = num;
 			if (myskill.template.manaUseType == 2)
 			{
-				cMP = 1.0;
+				cMP = 1;
 			}
 			else if (myskill.template.manaUseType != 1)
 			{
@@ -4759,14 +4759,14 @@ public class Char : IMapObject
 			}
 			else
 			{
-				cMP -= (double)myskill.manaUse * cMPFull / 100.0;
+				cMP -= (long)myskill.manaUse * cMPFull / 100;
 			}
 			myCharz().cStamina--;
 			GameScr.gI().isInjureMp = true;
 			GameScr.gI().twMp = 0;
-			if (cMP < 0.0)
+			if (cMP < 0)
 			{
-				cMP = 0.0;
+				cMP = 0;
 			}
 		}
 		if (me)
@@ -6570,26 +6570,26 @@ public class Char : IMapObject
 		ModFunc.isLockFocus = false;
 		switch (index)
 		{
-		case 0:
-			deFocusNPC();
-			charFocus = null;
-			itemFocus = null;
-			break;
-		case 1:
-			mobFocus = null;
-			charFocus = null;
-			itemFocus = null;
-			break;
-		case 2:
-			mobFocus = null;
-			deFocusNPC();
-			itemFocus = null;
-			break;
-		case 3:
-			mobFocus = null;
-			deFocusNPC();
-			charFocus = null;
-			break;
+			case 0:
+				deFocusNPC();
+				charFocus = null;
+				itemFocus = null;
+				break;
+			case 1:
+				mobFocus = null;
+				charFocus = null;
+				itemFocus = null;
+				break;
+			case 2:
+				mobFocus = null;
+				deFocusNPC();
+				itemFocus = null;
+				break;
+			case 3:
+				mobFocus = null;
+				deFocusNPC();
+				charFocus = null;
+				break;
 		}
 	}
 
@@ -6791,7 +6791,7 @@ public class Char : IMapObject
 		}
 	}
 
-	public void doInjure(double HPShow, double MPShow, bool isCrit, bool isMob)
+	public void doInjure(long HPShow, long MPShow, bool isCrit, bool isMob)
 	{
 		this.isCrit = isCrit;
 		this.isMob = isMob;
@@ -6801,13 +6801,13 @@ public class Char : IMapObject
 		GameScr.gI().twHp = 0;
 		GameScr.gI().isInjureMp = true;
 		GameScr.gI().twMp = 0;
-		if (cHP < 0.0)
+		if (cHP < 0)
 		{
-			cHP = 0.0;
+			cHP = 0;
 		}
-		if (cMP < 0.0)
+		if (cMP < 0)
 		{
-			cMP = 0.0;
+			cMP = 0;
 		}
 		if (isMob || (!isMob && cTypePk != 4 && damMP != -100))
 		{
@@ -6880,7 +6880,7 @@ public class Char : IMapObject
 		cp2 = toX;
 		cp3 = toY;
 		cp1 = 0;
-		cHP = 0.0;
+		cHP = 0;
 		testCharId = -9999;
 		killCharId = -9999;
 		if (me && myskill != null && myskill.template.id != 14)
@@ -7047,24 +7047,24 @@ public class Char : IMapObject
 		}
 		switch (type)
 		{
-		case 1:
-			if (clevel >= 9)
-			{
-				EffecMn.addEff(new Effect(19, cx - 5, cy + 20, 2, 1, -1));
-			}
-			break;
-		case 2:
-			if ((!me || isMonkey != 1) && isNhapThe && GameCanvas.gameTick % 5 == 0)
-			{
-				EffecMn.addEff(new Effect(22, cx - 5, cy + 35, 2, 1, -1));
-			}
-			break;
-		case 3:
-			if (clevel >= 9 && ySd - cy <= 5)
-			{
-				EffecMn.addEff(new Effect(19, cx - 5, ySd + 20, 2, 1, -1));
-			}
-			break;
+			case 1:
+				if (clevel >= 9)
+				{
+					EffecMn.addEff(new Effect(19, cx - 5, cy + 20, 2, 1, -1));
+				}
+				break;
+			case 2:
+				if ((!me || isMonkey != 1) && isNhapThe && GameCanvas.gameTick % 5 == 0)
+				{
+					EffecMn.addEff(new Effect(22, cx - 5, cy + 35, 2, 1, -1));
+				}
+				break;
+			case 3:
+				if (clevel >= 9 && ySd - cy <= 5)
+				{
+					EffecMn.addEff(new Effect(19, cx - 5, ySd + 20, 2, 1, -1));
+				}
+				break;
 		}
 	}
 
@@ -7633,7 +7633,7 @@ public class Char : IMapObject
 			myskill.lastTimeUseThisSkill = lastTimeUseThisSkill;
 			if (myskill.template.manaUseType == 2)
 			{
-				cMP = 1.0;
+				cMP = 1;
 			}
 			else if (myskill.template.manaUseType != 1)
 			{
@@ -7641,30 +7641,30 @@ public class Char : IMapObject
 			}
 			else
 			{
-				cMP -= (double)myskill.manaUse * cMPFull / 100.0;
+				cMP -= (long)myskill.manaUse * cMPFull / 100;
 			}
 			myCharz().cStamina--;
 			GameScr.gI().isInjureMp = true;
 			GameScr.gI().twMp = 0;
-			if (cMP < 0.0)
+			if (cMP < 0)
 			{
-				cMP = 0.0;
+				cMP = 0;
 			}
 		}
 		switch (idskillPaint)
 		{
-		case 24:
-			GameScr.addEffectEnd_Target(18, 0, typePaint, clone(), null, 3, timeGong, 0, level);
-			GameScr.addEffectEnd_Target(21, 0, typePaint, clone(), null, 1, timeGong, 0, level);
-			break;
-		case 25:
-			GameScr.addEffectEnd_Target(19, 0, typePaint, clone(), null, 3, timeGong, 0, level);
-			GameScr.addEffectEnd_Target(22, 0, typePaint, clone(), null, 1, timeGong, 0, level);
-			break;
-		case 26:
-			GameScr.addEffectEnd_Target(20, 0, typePaint, clone(), null, 3, timeGong, 0, level);
-			GameScr.addEffectEnd_Target(23, 0, typePaint, clone(), null, 1, timeGong, 0, level);
-			break;
+			case 24:
+				GameScr.addEffectEnd_Target(18, 0, typePaint, clone(), null, 3, timeGong, 0, level);
+				GameScr.addEffectEnd_Target(21, 0, typePaint, clone(), null, 1, timeGong, 0, level);
+				break;
+			case 25:
+				GameScr.addEffectEnd_Target(19, 0, typePaint, clone(), null, 3, timeGong, 0, level);
+				GameScr.addEffectEnd_Target(22, 0, typePaint, clone(), null, 1, timeGong, 0, level);
+				break;
+			case 26:
+				GameScr.addEffectEnd_Target(20, 0, typePaint, clone(), null, 3, timeGong, 0, level);
+				GameScr.addEffectEnd_Target(23, 0, typePaint, clone(), null, 1, timeGong, 0, level);
+				break;
 		}
 		if (this.typeFrame == 1)
 		{

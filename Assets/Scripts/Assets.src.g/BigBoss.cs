@@ -42,7 +42,7 @@ namespace Assets.src.g
 
 		private Char[] charAttack;
 
-		private int[] dameHP;
+		private long[] dameHP;
 
 		private sbyte type;
 
@@ -350,7 +350,7 @@ namespace Assets.src.g
 			flyUp = true;
 		}
 
-		public void setAttack(Char[] cAttack, int[] dame, sbyte type)
+		public void setAttack(Char[] cAttack, long[] dame, sbyte type)
 		{
 			charAttack = cAttack;
 			dameHP = dame;
@@ -369,7 +369,7 @@ namespace Assets.src.g
 			{
 				for (int i = 0; i < charAttack.Length; i++)
 				{
-					charAttack[i].doInjure(dameHP[i], 0.0, isCrit: false, isMob: false);
+					charAttack[i].doInjure(dameHP[i], 0, isCrit: false, isMob: false);
 				}
 			}
 			if (type == 7)
@@ -404,7 +404,7 @@ namespace Assets.src.g
 				{
 					for (int i = 0; i < charAttack.Length; i++)
 					{
-						MonsterDart.addMonsterDart(x + ((dir != 1) ? (-45) : 45), y - 30, isBoss: true, dameHP[i], 0.0, charAttack[i], 24);
+						MonsterDart.addMonsterDart(x + ((dir != 1) ? (-45) : 45), y - 30, isBoss: true, dameHP[i], 0, charAttack[i], 24);
 					}
 				}
 			}
@@ -422,7 +422,7 @@ namespace Assets.src.g
 				{
 					for (int j = 0; j < charAttack.Length; j++)
 					{
-						charAttack[j].doInjure(dameHP[j], 0.0, isCrit: false, isMob: false);
+						charAttack[j].doInjure(dameHP[j], 0, isCrit: false, isMob: false);
 						ServerEffect.addServerEffect(102, charAttack[j].cx, charAttack[j].cy, 1);
 					}
 				}
@@ -445,7 +445,7 @@ namespace Assets.src.g
 				shock = true;
 				for (int k = 0; k < charAttack.Length; k++)
 				{
-					charAttack[k].doInjure(dameHP[k], 0.0, isCrit: false, isMob: false);
+					charAttack[k].doInjure(dameHP[k], 0, isCrit: false, isMob: false);
 				}
 			}
 		}

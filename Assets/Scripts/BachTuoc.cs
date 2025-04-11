@@ -34,7 +34,7 @@ public class BachTuoc : Mob, IMapObject
 
 	private Char[] charAttack;
 
-	private int[] dameHP;
+	private long[] dameHP;
 
 	private sbyte type;
 
@@ -238,7 +238,7 @@ public class BachTuoc : Mob, IMapObject
 		}
 	}
 
-	public void setAttack(Char[] cAttack, int[] dame, sbyte type)
+	public void setAttack(Char[] cAttack, long[] dame, sbyte type)
 	{
 		charAttack = cAttack;
 		dameHP = dame;
@@ -263,7 +263,7 @@ public class BachTuoc : Mob, IMapObject
 			{
 				for (int i = 0; i < charAttack.Length; i++)
 				{
-					charAttack[i].doInjure(dameHP[i], 0.0, isCrit: false, isMob: false);
+					charAttack[i].doInjure(dameHP[i], 0, isCrit: false, isMob: false);
 					ServerEffect.addServerEffect(102, charAttack[i].cx, charAttack[i].cy, 1);
 				}
 			}
@@ -282,7 +282,7 @@ public class BachTuoc : Mob, IMapObject
 		{
 			for (int j = 0; j < charAttack.Length; j++)
 			{
-				charAttack[j].doInjure(dameHP[j], 0.0, isCrit: false, isMob: false);
+				charAttack[j].doInjure(dameHP[j], 0, isCrit: false, isMob: false);
 				ServerEffect.addServerEffect(102, charAttack[j].cx, charAttack[j].cy, 1);
 			}
 		}
