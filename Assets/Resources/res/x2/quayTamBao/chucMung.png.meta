@@ -235,7 +235,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      chucMung_0: -6500532865828588283
+      chucMung_1: 8030116097686046676
+      chucMung_2: -2143256579979771571
+      chucMung_3: -1315872025384357811
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

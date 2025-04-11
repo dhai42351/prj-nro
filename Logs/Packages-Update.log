@@ -1,0 +1,9 @@
+
+=== Sat Apr 12 00:01:44 2025
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were added:
+  com.unity.modules.accessibility@1.0.0
+  com.unity.multiplayer.center@1.0.0
