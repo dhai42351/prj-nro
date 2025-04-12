@@ -425,7 +425,7 @@ public class Controller : IMessageHandler
 									}
 									else
 									{
-										GameScr.startFlyText("👊 -" + dame, mob.x, mob.y - mob.h, 0, -2, mFont.ORANGE);
+										GameScr.startFlyText("👊 -" + NinjaUtil.FormatStat(dame), mob.x, mob.y - mob.h, 0, -2, mFont.ORANGE);
 									}
 								}
 							}
@@ -472,7 +472,7 @@ public class Controller : IMessageHandler
 							}
 							else
 							{
-								GameScr.startFlyText("👊 -" + num250, mob9.x, mob9.y - mob9.h, 0, -2, mFont.ORANGE);
+								GameScr.startFlyText("👊 -" + NinjaUtil.FormatStat(num250), mob9.x, mob9.y - mob9.h, 0, -2, mFont.ORANGE);
 							}
 						}
 						if (type4 == 6)
@@ -2874,7 +2874,7 @@ public class Controller : IMessageHandler
 								}
 								else
 								{
-									GameScr.startFlyText((flag9 ? "💥 -" : "👊 -") + dameHit, @char.cx, @char.cy - @char.ch, 0, -3, flag9 ? mFont.FATAL : mFont.RED);
+									GameScr.startFlyText((flag9 ? "💥 -" : "👊 -") + NinjaUtil.FormatStat(dameHit), @char.cx, @char.cy - @char.ch, 0, -3, flag9 ? mFont.FATAL : mFont.RED);
 								}
 							}
 							break;
@@ -2909,11 +2909,11 @@ public class Controller : IMessageHandler
 						{
 							if (dameHit2 == 0.0)
 							{
-								GameScr.startFlyText("👻 -" + mResources.miss, @char.cx, @char.cy - @char.ch, 0, -3, mFont.MISS);
+								GameScr.startFlyText("👻 " + mResources.miss, @char.cx, @char.cy - @char.ch, 0, -3, mFont.MISS);
 							}
 							else
 							{
-								GameScr.startFlyText((flag10 ? "💥 -" : "👊 -") + dameHit2, @char.cx, @char.cy - @char.ch, 0, -3, flag10 ? mFont.FATAL : mFont.ORANGE);
+								GameScr.startFlyText((flag10 ? "💥 -" : "👊 -") + NinjaUtil.FormatStat(dameHit2), @char.cx, @char.cy - @char.ch, 0, -3, flag10 ? mFont.FATAL : mFont.ORANGE);
 							}
 						}
 						break;
@@ -4180,7 +4180,7 @@ public class Controller : IMessageHandler
 							}
 							if (flag14)
 							{
-								GameScr.startFlyText("💥 -" + dame2, mob11.x, mob11.getY() - mob11.getH(), 0, -2, mFont.FATAL);
+								GameScr.startFlyText("💥 -" + NinjaUtil.FormatStat(dame2), mob11.x, mob11.getY() - mob11.getH(), 0, -2, mFont.FATAL);
 							}
 							else if (dame2 == 0)
 							{
@@ -4190,7 +4190,7 @@ public class Controller : IMessageHandler
 							}
 							else if (dame2 > 1)
 							{
-								GameScr.startFlyText("👊 -" + dame2, mob11.x, mob11.getY() - mob11.getH(), 0, -2, mFont.ORANGE);
+								GameScr.startFlyText("👊 -" + NinjaUtil.FormatStat(dame2), mob11.x, mob11.getY() - mob11.getH(), 0, -2, mFont.ORANGE);
 							}
 						}
 						break;

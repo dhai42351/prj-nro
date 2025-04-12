@@ -1291,8 +1291,8 @@ public class ModFunc : IActionListener
 	{
 		int imgHPWidth = mGraphics.getImageWidth(GameScr.imgHP);
 		int imgMPWidth = mGraphics.getImageWidth(GameScr.imgMP);
-		mFont.tahoma_7_red.drawStringBorder(g, NinjaUtil.getMoneys(Char.myCharz().cHP), 84 + imgHPWidth / 2, 4, mFont.CENTER, mFont.tahoma_7_grey);
-		mFont.tahoma_7_blue1.drawStringBorder(g, NinjaUtil.getMoneys(Char.myCharz().cMP), 84 + imgMPWidth / 2, 17, mFont.CENTER, mFont.tahoma_7_grey);
+		mFont.tahoma_7_red.drawStringBorder(g, (Char.myCharz().cHP > 1_000_000 ? NinjaUtil.FormatStat(Char.myCharz().cHP) : NinjaUtil.getMoneys(Char.myCharz().cHP)), 84 + imgHPWidth / 2, 4, mFont.CENTER, mFont.tahoma_7_grey);
+		mFont.tahoma_7_blue1.drawStringBorder(g, (Char.myCharz().cMP > 1_000_000 ? NinjaUtil.FormatStat(Char.myCharz().cMP) : NinjaUtil.getMoneys(Char.myCharz().cMP)), 84 + imgMPWidth / 2, 17, mFont.CENTER, mFont.tahoma_7_grey);
 		int xText = 90;
 		int yText = GameScr.gI().cmdMenu.y - 20;
 		if (!showInfoMe && !isEditButton && !isAutoNoitai && !QuaNapTuan.isNapTuan)
@@ -1485,7 +1485,7 @@ public class ModFunc : IActionListener
 					"] ",
 					char6.cName,
 					" [ ",
-					NinjaUtil.getMoneys(char6.cHP).ToString(),
+					NinjaUtil.FormatStat(char6.cHP).ToString(),
 					" ]"
 				};
 				if (char6 == Char.myCharz().charFocus)
@@ -1539,7 +1539,7 @@ public class ModFunc : IActionListener
 				g.setColor(16711680);
 			}
 			g.fillRect(healthBarX, healthBarY, currentHealthBarWidth, healthBarHeight, 8);
-			string hpText = NinjaUtil.getMoneys(charFocus.cHP) + "/" + NinjaUtil.getMoneys(charFocus.cHPFull);
+			string hpText = (charFocus.cHP > 1_000_000 ? NinjaUtil.FormatStat(charFocus.cHP) : NinjaUtil.getMoneys(charFocus.cHP)) + "/" + (charFocus.cHPFull > 1_000_000 ? NinjaUtil.FormatStat(charFocus.cHPFull) : NinjaUtil.getMoneys(charFocus.cHPFull));
 			mFont.tahoma_7b_white.drawStringBorder(g, hpText, GameCanvas.w / 2 + 1, healthBarY + healthBarHeight / 2 - 6, mFont.CENTER, mFont.tahoma_7_grey);
 			num4 += 17;
 			if (charFocus.protectEff)

@@ -4976,19 +4976,19 @@ public class Panel : IActionListener, IChatable
 			if (i == 0)
 			{
 				SmallImage.drawSmallImage(g, 567, num5 + 4, num6 + 4, 0, 0);
-				string st = mResources.HP + " " + mResources.root + ": " + NinjaUtil.getMoneys(pet.cHP);
+				string st = mResources.HP + " " + mResources.root + ": " + (pet.cHP > 1_000_000 ? NinjaUtil.FormatStat(pet.cHP) : NinjaUtil.getMoneys(pet.cHP));
 				mFont.tahoma_7b_blue.drawString(g, st, num2 + 5, num3 + 3, 0);
 			}
 			if (i == 1)
 			{
 				SmallImage.drawSmallImage(g, 569, num5 + 4, num6 + 4, 0, 0);
-				string st2 = mResources.KI + " " + mResources.root + ": " + NinjaUtil.getMoneys(pet.cMP);
+				string st2 = mResources.KI + " " + mResources.root + ": " + (pet.cMP > 1_000_000 ? NinjaUtil.FormatStat(pet.cMP) : NinjaUtil.getMoneys(pet.cMP));
 				mFont.tahoma_7b_blue.drawString(g, st2, num2 + 5, num3 + 3, 0);
 			}
 			if (i == 2)
 			{
 				SmallImage.drawSmallImage(g, 568, num5 + 4, num6 + 4, 0, 0);
-				string st3 = mResources.hit_point + " " + mResources.root + ": " + NinjaUtil.getMoneys(pet.cDamFull);
+				string st3 = mResources.hit_point + " " + mResources.root + ": " + (pet.cDamFull > 1_000_000 ? NinjaUtil.FormatStat(pet.cDamFull) : NinjaUtil.getMoneys(pet.cDamFull));
 				mFont.tahoma_7b_blue.drawString(g, st3, num2 + 5, num3 + 3, 0);
 			}
 			if (i == 3)
@@ -7161,8 +7161,8 @@ public class Panel : IActionListener, IChatable
 	private void paintPetSkillInfo(mGraphics g, bool isPet2)
 	{
 		Char pet = (isPet2 ? Char.MyPet2z() : Char.myPetz());
-		mFont.tahoma_7b_white.drawString(g, "HP: " + NinjaUtil.getMoneys(pet.cHP) + "/" + NinjaUtil.getMoneys(pet.cHPFull), X + 60, 4, mFont.LEFT, mFont.tahoma_7b_dark);
-		mFont.tahoma_7b_white.drawString(g, "MP: " + NinjaUtil.getMoneys(pet.cMP) + "/" + NinjaUtil.getMoneys(pet.cMPFull), X + 60, 16, mFont.LEFT, mFont.tahoma_7b_dark);
+		mFont.tahoma_7b_white.drawString(g, "HP: " + (pet.cHP >= 1_000_000 ? NinjaUtil.FormatStat(pet.cHP) : NinjaUtil.getMoneys(pet.cHP)) + "/" + (pet.cHPFull >= 1_000_000 ? NinjaUtil.FormatStat(pet.cHPFull) : NinjaUtil.getMoneys(pet.cHPFull)), X + 60, 4, mFont.LEFT, mFont.tahoma_7b_dark);
+		mFont.tahoma_7b_white.drawString(g, "MP: " + (pet.cMP >= 1_000_000 ? NinjaUtil.FormatStat(pet.cMP) : NinjaUtil.getMoneys(pet.cMP)) + "/" + (pet.cHP >= 1_000_000 ? NinjaUtil.FormatStat(pet.cMPFull) : NinjaUtil.getMoneys(pet.cMPFull)), X + 60, 16, mFont.LEFT, mFont.tahoma_7b_dark);
 		mFont.tahoma_7_yellow.drawString(g, mResources.critical + ": " + pet.cCriticalFull + "   " + mResources.armor + ": " + NinjaUtil.getMoneys(pet.cDefull), X + 60, 27, mFont.LEFT, mFont.tahoma_7_grey);
 		mFont.tahoma_7_yellow.drawString(g, mResources.potential2 + ": " + NinjaUtil.getMoneys(pet.cTiemNang), X + 60, 38, mFont.LEFT, mFont.tahoma_7_grey);
 	}
@@ -7339,9 +7339,9 @@ public class Panel : IActionListener, IChatable
 
 	private void paintItemBodyBagInfo(mGraphics g)
 	{
-		mFont.tahoma_7_yellow.drawString(g, mResources.HP + ": " + NinjaUtil.getMoneys(Char.myCharz().cHP) + " / " + NinjaUtil.getMoneys(Char.myCharz().cHPFull), X + 60, 2, mFont.LEFT, mFont.tahoma_7_grey);
-		mFont.tahoma_7_yellow.drawString(g, mResources.KI + ": " + NinjaUtil.getMoneys(Char.myCharz().cMP) + " / " + NinjaUtil.getMoneys(Char.myCharz().cMPFull), X + 60, 14, mFont.LEFT, mFont.tahoma_7_grey);
-		mFont.tahoma_7_yellow.drawString(g, mResources.hit_point + ": " + NinjaUtil.getMoneys(Char.myCharz().cDamFull), X + 60, 26, mFont.LEFT, mFont.tahoma_7_grey);
+		mFont.tahoma_7_yellow.drawString(g, mResources.HP + ": " + (Char.myCharz().cHP > 1_000_000 ? NinjaUtil.FormatStat(Char.myCharz().cHP) : NinjaUtil.getMoneys(Char.myCharz().cHP)) + " / " + (Char.myCharz().cHPFull > 1_000_000 ? NinjaUtil.FormatStat(Char.myCharz().cHPFull) : NinjaUtil.getMoneys(Char.myCharz().cHPFull)), X + 60, 2, mFont.LEFT, mFont.tahoma_7_grey);
+		mFont.tahoma_7_yellow.drawString(g, mResources.KI + ": " + (Char.myCharz().cMP > 1_000_000 ? NinjaUtil.FormatStat(Char.myCharz().cMP) : NinjaUtil.getMoneys(Char.myCharz().cMP)) + " / " + (Char.myCharz().cMPFull > 1_000_000 ? NinjaUtil.FormatStat(Char.myCharz().cMPFull) : NinjaUtil.getMoneys(Char.myCharz().cMPFull)), X + 60, 14, mFont.LEFT, mFont.tahoma_7_grey);
+		mFont.tahoma_7_yellow.drawString(g, mResources.hit_point + ": " + (Char.myCharz().cDamFull >= 1_000_000 ? NinjaUtil.FormatStat(Char.myCharz().cDamFull) : NinjaUtil.getMoneys(Char.myCharz().cDamFull)), X + 60, 26, mFont.LEFT, mFont.tahoma_7_grey);
 		mFont.tahoma_7_yellow.drawString(g, mResources.armor + ": " + NinjaUtil.getMoneys(Char.myCharz().cDefull) + ", " + mResources.critical + ": " + Char.myCharz().cCriticalFull + "%", X + 60, 38, mFont.LEFT, mFont.tahoma_7_grey);
 	}
 
@@ -7565,8 +7565,8 @@ public class Panel : IActionListener, IChatable
 	private void paintPetStatusInfo(mGraphics g, bool isPet2)
 	{
 		Char pet = (isPet2 ? Char.MyPet2z() : Char.myPetz());
-		mFont.tahoma_7b_white.drawString(g, "HP: " + NinjaUtil.getMoneys(pet.cHP) + "/" + NinjaUtil.getMoneys(pet.cHPFull), X + 60, 4, mFont.LEFT, mFont.tahoma_7b_dark);
-		mFont.tahoma_7b_white.drawString(g, "MP: " + NinjaUtil.getMoneys(pet.cMP) + "/" + NinjaUtil.getMoneys(pet.cMPFull), X + 60, 16, mFont.LEFT, mFont.tahoma_7b_dark);
+		mFont.tahoma_7b_white.drawString(g, "HP: " + (pet.cHP >= 1_000_000 ? NinjaUtil.FormatStat(pet.cHP) : NinjaUtil.getMoneys(pet.cHP)) + "/" + (pet.cHPFull >= 1_000_000 ? NinjaUtil.FormatStat(pet.cHPFull) : NinjaUtil.getMoneys(pet.cHPFull)), X + 60, 4, mFont.LEFT, mFont.tahoma_7b_dark);
+		mFont.tahoma_7b_white.drawString(g, "MP: " + (pet.cMP >= 1_000_000 ? NinjaUtil.FormatStat(pet.cMP) : NinjaUtil.getMoneys(pet.cMP)) + "/" + (pet.cMPFull >= 1_000_000 ? NinjaUtil.FormatStat(pet.cMPFull) : NinjaUtil.getMoneys(pet.cMPFull)), X + 60, 16, mFont.LEFT, mFont.tahoma_7b_dark);
 		mFont.tahoma_7_yellow.drawString(g, mResources.critical + ": " + NinjaUtil.getMoneys(pet.cCriticalFull) + "   " + mResources.armor + ": " + NinjaUtil.getMoneys(pet.cDefull), X + 60, 27, mFont.LEFT, mFont.tahoma_7_grey);
 		mFont.tahoma_7_yellow.drawString(g, mResources.status + ": " + strStatus[pet.petStatus], X + 60, 38, mFont.LEFT, mFont.tahoma_7_grey);
 	}
@@ -7954,7 +7954,7 @@ public class Panel : IActionListener, IChatable
 		pointerDownTime = (pointerDownFirstX = 0);
 		pointerIsDowning = false;
 		isShow = false;
-		if ((Char.myCharz().cHP <= 0.0 || Char.myCharz().statusMe == 14 || Char.myCharz().statusMe == 5) && Char.myCharz().meDead)
+		if ((Char.myCharz().cHP <= 0 || Char.myCharz().statusMe == 14 || Char.myCharz().statusMe == 5) && Char.myCharz().meDead)
 		{
 			Command center = new Command(mResources.DIES[0], 11038, GameScr.gI());
 			GameScr.gI().center = center;
@@ -8044,7 +8044,7 @@ public class Panel : IActionListener, IChatable
 		GameCanvas.isFocusPanel2 = false;
 		pointerDownTime = (pointerDownFirstX = 0);
 		pointerIsDowning = false;
-		if ((Char.myCharz().cHP <= 0.0 || Char.myCharz().statusMe == 14 || Char.myCharz().statusMe == 5) && Char.myCharz().meDead)
+		if ((Char.myCharz().cHP <= 0 || Char.myCharz().statusMe == 14 || Char.myCharz().statusMe == 5) && Char.myCharz().meDead)
 		{
 			Command center = new Command(mResources.DIES[0], 11038, GameScr.gI());
 			GameScr.gI().center = center;
@@ -9046,7 +9046,7 @@ public class Panel : IActionListener, IChatable
 
 	private void SetTypePlayerInfo()
 	{
-		string content = "Tộc: " + ((Char.myCharz().cgender == 0) ? "Trái Đất" : ((Char.myCharz().cgender == 1) ? "Namek" : "Xayda")) + "\nHP: " + NinjaUtil.getMoneys(Char.myCharz().cHP) + " / " + NinjaUtil.getMoneys(Char.myCharz().cHPFull) + "\nKI: " + NinjaUtil.getMoneys(Char.myCharz().cMP) + " / " + NinjaUtil.getMoneys(Char.myCharz().cMPFull) + "\nSĐ: " + NinjaUtil.getMoneys(Char.myCharz().cDamFull) + "\nChí mạng: " + Char.myCharz().cCriticalFull + "%\nGiảm sát thương: " + Char.myCharz().tlDef + "%\nPhản sát thương: " + Char.myCharz().tlPst + "%\nNé đòn: " + Char.myCharz().tlNeDon + "%\nHút HP: " + Char.myCharz().tlHutHp + "%\nHút KI: " + Char.myCharz().tlHutMp + "%\nGiảm TDHS: " + Char.myCharz().tileGiamTDHS + "%\nGiảm TDHS: " + Char.myCharz().timeGiamTDHS + " giây\nKháng TDHS: " + (Char.myCharz().khangTDHS ? "Có" : "Không") + "\nKháng lạnh: " + (Char.myCharz().isKhongLanh ? "Có" : "Không") + "\nVô hình: " + (Char.myCharz().wearingVoHinh ? "Có" : "Không") + "\nDịch chuyển: " + (Char.myCharz().teleport ? "Có" : "Không") + "\n";
+		string content = "Tộc: " + ((Char.myCharz().cgender == 0) ? "Trái Đất" : ((Char.myCharz().cgender == 1) ? "Namek" : "Xayda")) + "\nHP: " + (Char.myCharz().cHP > 1_000_000 ? NinjaUtil.FormatStat(Char.myCharz().cHP) : NinjaUtil.getMoneys(Char.myCharz().cHP)) + " / " + (Char.myCharz().cHPFull > 1_000_000 ? NinjaUtil.FormatStat(Char.myCharz().cHPFull) : NinjaUtil.getMoneys(Char.myCharz().cHPFull)) + "\nKI: " + (Char.myCharz().cMP > 1_000_000 ? NinjaUtil.FormatStat(Char.myCharz().cMP) : NinjaUtil.getMoneys(Char.myCharz().cMP)) + " / " + (Char.myCharz().cMPFull > 1_000_000 ? NinjaUtil.FormatStat(Char.myCharz().cMPFull) : NinjaUtil.getMoneys(Char.myCharz().cMPFull)) + "\nSĐ: " + (Char.myCharz().cDamFull > 1_000_000 ? NinjaUtil.FormatStat(Char.myCharz().cDamFull) : NinjaUtil.getMoneys(Char.myCharz().cDamFull)) + "\nChí mạng: " + Char.myCharz().cCriticalFull + "%\nGiảm sát thương: " + Char.myCharz().tlDef + "%\nPhản sát thương: " + Char.myCharz().tlPst + "%\nNé đòn: " + Char.myCharz().tlNeDon + "%\nHút HP: " + Char.myCharz().tlHutHp + "%\nHút KI: " + Char.myCharz().tlHutMp + "%\nGiảm TDHS: " + Char.myCharz().tileGiamTDHS + "%\nGiảm TDHS: " + Char.myCharz().timeGiamTDHS + " giây\nKháng TDHS: " + (Char.myCharz().khangTDHS ? "Có" : "Không") + "\nKháng lạnh: " + (Char.myCharz().isKhongLanh ? "Có" : "Không") + "\nVô hình: " + (Char.myCharz().wearingVoHinh ? "Có" : "Không") + "\nDịch chuyển: " + (Char.myCharz().teleport ? "Có" : "Không") + "\n";
 		contenInfo = mFont.tahoma_7_grey.splitFontArray(content, wScroll - 40);
 		currentListLength = contenInfo.Length;
 		ITEM_HEIGHT = 16;
@@ -9640,9 +9640,9 @@ public class Panel : IActionListener, IChatable
 		if (selected == 0 || selected == 1 || selected == 2 || selected == 3 || selected == 4 || selected == 5)
 		{
 			long cTiemNang = Char.myCharz().cTiemNang;
-			double cHPGoc = Char.myCharz().cHPGoc;
-			double cMPGoc = Char.myCharz().cMPGoc;
-			double cDamGoc = Char.myCharz().cDamGoc;
+			long cHPGoc = Char.myCharz().cHPGoc;
+			long cMPGoc = Char.myCharz().cMPGoc;
+			long cDamGoc = Char.myCharz().cDamGoc;
 			double cDefGoc = Char.myCharz().cDefGoc;
 			_ = Char.myCharz().cCriticalGoc;
 			int num2 = 1000;

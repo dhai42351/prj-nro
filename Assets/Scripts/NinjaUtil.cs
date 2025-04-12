@@ -170,6 +170,27 @@ public class NinjaUtil
 		return text;
 	}
 
+	public static string FormatStat(long stat)
+	{
+		if (stat <= 1000L)
+		{
+			return stat.ToString();
+		}
+		if (stat <= 1000000L)
+		{
+			return (stat / 1000.0).ToString("0.#") + "K";
+		}
+		if (stat < 1000000000L)
+		{
+			return (stat / 1000000.0).ToString("0.#") + "M";
+		}
+		if (stat < 1000000000000L)
+		{
+			return (stat / 1000000000.0).ToString("0.#") + "B";
+		}
+		return (stat / 1000000000000.0).ToString("0.#") + "T";
+	}
+
 	public static string getTimeAgo(long timeRemainS)
 	{
 		long num = 0L;

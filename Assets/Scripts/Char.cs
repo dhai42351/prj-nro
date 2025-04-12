@@ -6824,7 +6824,7 @@ public class Char : IMapObject
 			}
 			else
 			{
-				GameScr.startFlyText((isCrit ? "💥 -" : "👊 -") + HPShow, cx, cy - ch, 0, -2, isCrit ? mFont.FATAL : mFont.RED);
+				GameScr.startFlyText((isCrit ? "💥 -" : "👊 -") + NinjaUtil.FormatStat(HPShow), cx, cy - ch, 0, -2, isCrit ? mFont.FATAL : mFont.RED);
 			}
 		}
 		if (HPShow > 0)

@@ -969,7 +969,7 @@ public class Mob : IMapObject
 		timeStatus--;
 		if (timeStatus <= 0 && (isTypeNewMod() || isNewModStand() || (isNewMod() && frame == 11) || (isSpecial() && frame == 15) || (templateId < 58 && frame == 11)))
 		{
-			if ((injureBy != null && injureThenDie) || hp == 0.0)
+			if ((injureBy != null && injureThenDie) || hp == 0)
 			{
 				status = 1;
 				p2 = injureBy.cdir << 1;
@@ -1454,7 +1454,7 @@ public class Mob : IMapObject
 			SmallImage.drawSmallImage(g, smallBody, x, y + fy - 9, (dir != 1) ? 2 : 0, mGraphics.BOTTOM | mGraphics.HCENTER);
 		}
 		g.translate(0, -GameCanvas.transY);
-		if (Char.myCharz().mobFocus == null || !Char.myCharz().mobFocus.Equals(this) || status == 1 || hp <= 0.0 || imgHPtem == null)
+		if (Char.myCharz().mobFocus == null || !Char.myCharz().mobFocus.Equals(this) || status == 1 || hp <= 0 || imgHPtem == null)
 		{
 			return;
 		}

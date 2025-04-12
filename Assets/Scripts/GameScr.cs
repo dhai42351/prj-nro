@@ -620,15 +620,15 @@ public class GameScr : mScreen, IChatable
 
 	public static int padSkill;
 
-	public double dMP;
+	public long dMP;
 
-	public int twMp;
+	public long twMp;
 
 	public bool isInjureMp;
 
-	public double dHP;
+	public long dHP;
 
-	public int twHp;
+	public long twHp;
 
 	public bool isInjureHp;
 
@@ -4527,10 +4527,10 @@ public class GameScr : mScreen, IChatable
 			}
 			else if (dHP > Char.myCharz().cHP)
 			{
-				double num5 = (dHP - Char.myCharz().cHP) / 2.0;
-				if (num5 < 1.0)
+				long num5 = (dHP - Char.myCharz().cHP) / 2;
+				if (num5 < 1)
 				{
-					num5 = 1.0;
+					num5 = 1;
 				}
 				dHP -= num5;
 			}
@@ -4549,10 +4549,10 @@ public class GameScr : mScreen, IChatable
 			}
 			else if (dMP > Char.myCharz().cMP)
 			{
-				double num6 = (dMP - Char.myCharz().cMP) / 2.0;
-				if (num6 < 1.0)
+				long num6 = (dMP - Char.myCharz().cMP) / 2;
+				if (num6 < 1)
 				{
-					num6 = 1.0;
+					num6 = 1;
 				}
 				dMP -= num6;
 			}
@@ -5687,7 +5687,7 @@ public class GameScr : mScreen, IChatable
 				}
 				if (Char.myCharz().mobFocus.templateId != 0)
 				{
-					mFont.tahoma_7b_green2.drawString(g, NinjaUtil.getMoneys(Char.myCharz().mobFocus.hp) + string.Empty, imgScrW / 2, 22 + mGraphics.addYWhenOpenKeyBoard, mFont.CENTER);
+					mFont.tahoma_7b_green2.drawString(g, (Char.myCharz().mobFocus.hp > 1_000_000 ? NinjaUtil.FormatStat(Char.myCharz().mobFocus.hp) : NinjaUtil.getMoneys(Char.myCharz().mobFocus.hp)) + string.Empty, imgScrW / 2, 22 + mGraphics.addYWhenOpenKeyBoard, mFont.CENTER);
 				}
 			}
 			else if (Char.myCharz().npcFocus != null)
@@ -5701,7 +5701,7 @@ public class GameScr : mScreen, IChatable
 			else if (Char.myCharz().charFocus != null)
 			{
 				mFont.tahoma_7b_green2.drawString(g, Char.myCharz().charFocus.cName, imgScrW / 2, 9 + mGraphics.addYWhenOpenKeyBoard, mFont.CENTER);
-				mFont.tahoma_7b_green2.drawString(g, NinjaUtil.getMoneys(Char.myCharz().charFocus.cHP) + string.Empty, imgScrW / 2, 22 + mGraphics.addYWhenOpenKeyBoard, mFont.CENTER);
+				mFont.tahoma_7b_green2.drawString(g, (Char.myCharz().charFocus.cHP > 1_000_000 ? NinjaUtil.FormatStat(Char.myCharz().charFocus.cHP) : NinjaUtil.getMoneys(Char.myCharz().charFocus.cHP)) + string.Empty, imgScrW / 2, 22 + mGraphics.addYWhenOpenKeyBoard, mFont.CENTER);
 			}
 			else
 			{
