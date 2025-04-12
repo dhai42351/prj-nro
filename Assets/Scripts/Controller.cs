@@ -421,11 +421,11 @@ public class Controller : IMessageHandler
 									{
 										mob.x = mob.xFirst;
 										mob.y = mob.yFirst;
-										GameScr.startFlyText(mResources.miss, mob.x, mob.y - mob.h, 0, -2, mFont.MISS);
+										GameScr.startFlyText("👻 " + mResources.miss, mob.x, mob.y - mob.h, 0, -2, mFont.MISS);
 									}
 									else
 									{
-										GameScr.startFlyText("-" + dame, mob.x, mob.y - mob.h, 0, -2, mFont.ORANGE);
+										GameScr.startFlyText("👊 -" + dame, mob.x, mob.y - mob.h, 0, -2, mFont.ORANGE);
 									}
 								}
 							}
@@ -468,11 +468,11 @@ public class Controller : IMessageHandler
 							{
 								mob9.x = mob9.xFirst;
 								mob9.y = mob9.yFirst;
-								GameScr.startFlyText(mResources.miss, mob9.x, mob9.y - mob9.h, 0, -2, mFont.MISS);
+								GameScr.startFlyText("👻 " + mResources.miss, mob9.x, mob9.y - mob9.h, 0, -2, mFont.MISS);
 							}
 							else
 							{
-								GameScr.startFlyText("-" + num250, mob9.x, mob9.y - mob9.h, 0, -2, mFont.ORANGE);
+								GameScr.startFlyText("👊 -" + num250, mob9.x, mob9.y - mob9.h, 0, -2, mFont.ORANGE);
 							}
 						}
 						if (type4 == 6)
@@ -2870,11 +2870,11 @@ public class Controller : IMessageHandler
 							{
 								if (dameHit == 0)
 								{
-									GameScr.startFlyText(mResources.miss, @char.cx, @char.cy - @char.ch, 0, -3, mFont.MISS_ME);
+									GameScr.startFlyText("👻 " + mResources.miss, @char.cx, @char.cy - @char.ch, 0, -3, mFont.MISS_ME);
 								}
 								else
 								{
-									GameScr.startFlyText("-" + dameHit, @char.cx, @char.cy - @char.ch, 0, -3, flag9 ? mFont.FATAL : mFont.RED);
+									GameScr.startFlyText((flag9 ? "💥 -" : "👊 -") + dameHit, @char.cx, @char.cy - @char.ch, 0, -3, flag9 ? mFont.FATAL : mFont.RED);
 								}
 							}
 							break;
@@ -2909,11 +2909,11 @@ public class Controller : IMessageHandler
 						{
 							if (dameHit2 == 0.0)
 							{
-								GameScr.startFlyText(mResources.miss, @char.cx, @char.cy - @char.ch, 0, -3, mFont.MISS);
+								GameScr.startFlyText("👻 -" + mResources.miss, @char.cx, @char.cy - @char.ch, 0, -3, mFont.MISS);
 							}
 							else
 							{
-								GameScr.startFlyText("-" + dameHit2, @char.cx, @char.cy - @char.ch, 0, -3, flag10 ? mFont.FATAL : mFont.ORANGE);
+								GameScr.startFlyText((flag10 ? "💥 -" : "👊 -") + dameHit2, @char.cx, @char.cy - @char.ch, 0, -3, flag10 ? mFont.FATAL : mFont.ORANGE);
 							}
 						}
 						break;
@@ -4180,17 +4180,17 @@ public class Controller : IMessageHandler
 							}
 							if (flag14)
 							{
-								GameScr.startFlyText("-" + dame2, mob11.x, mob11.getY() - mob11.getH(), 0, -2, mFont.FATAL);
+								GameScr.startFlyText("💥 -" + dame2, mob11.x, mob11.getY() - mob11.getH(), 0, -2, mFont.FATAL);
 							}
 							else if (dame2 == 0)
 							{
 								mob11.x = mob11.xFirst;
 								mob11.y = mob11.yFirst;
-								GameScr.startFlyText(mResources.miss, mob11.x, mob11.getY() - mob11.getH(), 0, -2, mFont.MISS);
+								GameScr.startFlyText("👻 " + mResources.miss, mob11.x, mob11.getY() - mob11.getH(), 0, -2, mFont.MISS);
 							}
 							else if (dame2 > 1)
 							{
-								GameScr.startFlyText("-" + dame2, mob11.x, mob11.getY() - mob11.getH(), 0, -2, mFont.ORANGE);
+								GameScr.startFlyText("👊 -" + dame2, mob11.x, mob11.getY() - mob11.getH(), 0, -2, mFont.ORANGE);
 							}
 						}
 						break;
@@ -4209,7 +4209,7 @@ public class Controller : IMessageHandler
 						{
 							mob10.hp = msg.reader().readInt();
 							mob10.updateHp_bar();
-							GameScr.startFlyText(mResources.miss, mob10.x, mob10.y - mob10.h, 0, -2, mFont.MISS);
+							GameScr.startFlyText("👻 " + mResources.miss, mob10.x, mob10.y - mob10.h, 0, -2, mFont.MISS);
 						}
 						break;
 					}

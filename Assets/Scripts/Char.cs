@@ -6815,16 +6815,16 @@ public class Char : IMapObject
 			{
 				if (me)
 				{
-					GameScr.startFlyText(mResources.miss, cx, cy - ch, 0, -2, mFont.MISS_ME);
+					GameScr.startFlyText("👻 " + mResources.miss, cx, cy - ch, 0, -2, mFont.MISS_ME);
 				}
 				else
 				{
-					GameScr.startFlyText(mResources.miss, cx, cy - ch, 0, -2, mFont.MISS);
+					GameScr.startFlyText("👻 " + mResources.miss, cx, cy - ch, 0, -2, mFont.MISS);
 				}
 			}
 			else
 			{
-				GameScr.startFlyText("-" + HPShow, cx, cy - ch, 0, -2, isCrit ? mFont.FATAL : mFont.RED);
+				GameScr.startFlyText((isCrit ? "💥 -" : "👊 -") + HPShow, cx, cy - ch, 0, -2, isCrit ? mFont.FATAL : mFont.RED);
 			}
 		}
 		if (HPShow > 0)
